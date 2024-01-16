@@ -1,4 +1,4 @@
-package com.example.comp4200project.ui.theme
+package com.comp4200project.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun Comp4200ProjectTheme(
+fun Comp4200projectTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

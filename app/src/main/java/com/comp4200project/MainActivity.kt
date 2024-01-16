@@ -1,4 +1,4 @@
-package com.example.comp4200project
+package com.comp4200project
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.comp4200project.ui.theme.Comp4200ProjectTheme
+import com.comp4200project.ui.theme.Comp4200projectTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Comp4200ProjectTheme {
+            Comp4200projectTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -40,7 +40,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    Comp4200ProjectTheme {
+    Comp4200projectTheme {
         Greeting("Android")
     }
 }
