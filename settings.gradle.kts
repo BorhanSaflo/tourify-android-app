@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "comp4200project"
+rootProject.name = "tourify"
 include(":app")
  

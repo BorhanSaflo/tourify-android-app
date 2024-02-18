@@ -1,4 +1,4 @@
-package com.comp4200project.ui.dashboard
+package com.tourify.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

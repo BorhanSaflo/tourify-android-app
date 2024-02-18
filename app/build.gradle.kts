@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.comp4200project"
+    namespace = "com.tourify"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.comp4200project"
+        applicationId = "com.tourify"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

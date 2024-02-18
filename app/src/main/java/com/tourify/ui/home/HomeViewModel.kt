@@ -1,4 +1,4 @@
-package com.comp4200project.ui.home
+package com.tourify.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

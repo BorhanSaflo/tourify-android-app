@@ -1,4 +1,4 @@
-package com.comp4200project
+package com.tourify
 
 import org.junit.Test
 

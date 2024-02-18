@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Comp4200project"
+        android:theme="@style/Theme.Tourify"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

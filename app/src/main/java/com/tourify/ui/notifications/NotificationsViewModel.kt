@@ -1,4 +1,4 @@
-package com.comp4200project.ui.notifications
+package com.tourify.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
