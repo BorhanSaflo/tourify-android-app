@@ -9,7 +9,7 @@
         android:id="@+id/logo_image_view"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
 
     <TextView
-        android:id="@+id/sign_up_text_view"
+        android:id="@+id/signup_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
