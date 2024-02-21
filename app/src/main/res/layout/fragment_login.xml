@@ -19,7 +19,7 @@
         android:id="@+id/username_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
@@ -41,10 +41,10 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Button"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="@+id/username_edit_text"
         app:layout_constraintStart_toStartOf="@+id/username_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/remember_me_check_box" />
@@ -54,6 +54,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remember Me"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toStartOf="@+id/username_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+
+    <TextView
+        android:id="@+id/sign_up_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password_text_view" />
+
+    <TextView
+        android:id="@+id/forgot_password_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Forgot Password"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#2196F3"
+        app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
