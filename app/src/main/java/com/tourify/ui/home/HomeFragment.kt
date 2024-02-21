@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.tourify.R
 import com.tourify.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -28,10 +30,36 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Temporary image list
+        val imgList = mutableListOf<Int>()
+        imgList.add(R.drawable.ic_dashboard_black_24dp)
+        imgList.add(R.drawable.ic_home_black_24dp)
+        imgList.add(R.drawable.ic_notifications_black_24dp)
+
+        // Trending scroll view
+        val trendingLinearLayout = binding.trendingLinearLayout
+        for(i in 1..10) {
+            trendingLinearLayout.addView(ImageView(context).apply {
+                setImageResource(imgList[i%3])
+                layoutParams = ViewGroup.LayoutParams(384, 384)
+                val marginParams = ViewGroup.MarginLayoutParams(384, 384)
+                marginParams.setMargins(10, 10, 10, 10)
+                layoutParams = marginParams
+            })
         }
+
+        // Near You scroll view
+        val forYouLinearLayout = binding.nearYouLinearLayout
+        for(i in 1..10) {
+            forYouLinearLayout.addView(ImageView(context).apply {
+                setImageResource(imgList[i%3])
+                layoutParams = ViewGroup.LayoutParams(384, 384)
+                val marginParams = ViewGroup.MarginLayoutParams(384, 384)
+                marginParams.setMargins(10, 10, 10, 10)
+                layoutParams = marginParams
+            })
+        }
+
         return root
     }
 
