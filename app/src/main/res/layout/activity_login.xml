@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/presence_online" />
+        app:srcCompat="@drawable/image__15_" />
 
     <EditText
         android:id="@+id/username_edit_text"

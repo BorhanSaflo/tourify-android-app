@@ -29,9 +29,11 @@ class LoginActivity : AppCompatActivity() {
 
 
         // Load the saved username and password
-        usernameEditText.setText(FileHandler.readData("username", this))
-        passwordEditText.setText(FileHandler.readData("password", this))
-        rememberMeCheckBox.isChecked = FileHandler.readData("rememberMe", this).toBoolean()
+        if(FileHandler.readData("rememberMe", this).toBoolean()) {
+            usernameEditText.setText(FileHandler.readData("username", this))
+            passwordEditText.setText(FileHandler.readData("password", this))
+            rememberMeCheckBox.isChecked = true;
+        }
 
 
         // Click listener for Login button
@@ -39,26 +41,19 @@ class LoginActivity : AppCompatActivity() {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            if (validateCredentials(username, password)) {
-                if(rememberMeCheckBox.isChecked){
-                    FileHandler.writeData("username", username, this)
-                    FileHandler.writeData("password", password, this)
-                    FileHandler.writeData("rememberMe", "true", this)
-                } else {
-                    FileHandler.writeData("username", "", this)
-                    FileHandler.writeData("password", "", this)
-                    FileHandler.writeData("rememberMe", "false", this)
-                }
+            FileHandler.writeData("username", username, this)
+            FileHandler.writeData("password", password, this)
+            FileHandler.writeData("rememberMe", rememberMeCheckBox.isChecked.toString(), this)
 
+            if (validateCredentials(username, password)) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
+        }
 
-
-            // Click listener for Sign Up button
-            signupTextView.setOnClickListener {
-                startActivity(Intent(this, SignupActivity::class.java))
-            }
+        // Click listener for Sign Up button
+        signupTextView.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 
