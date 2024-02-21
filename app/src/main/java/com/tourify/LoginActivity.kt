@@ -46,7 +46,10 @@ class LoginActivity : AppCompatActivity() {
             FileHandler.writeData("rememberMe", rememberMeCheckBox.isChecked.toString(), this)
 
             if (validateCredentials(username, password)) {
-                startActivity(Intent(this, MainActivity::class.java))
+                val loginActivityIntent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("username", username)
+                }
+                startActivity(loginActivityIntent)
                 finish()
             }
         }

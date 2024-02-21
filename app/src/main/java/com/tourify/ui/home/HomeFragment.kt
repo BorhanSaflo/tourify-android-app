@@ -1,5 +1,6 @@
 package com.tourify.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,10 +26,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        // Greeting text
+        val textView: TextView = binding.greetingTextView
+        textView.setText("Hi, ${activity?.intent?.getStringExtra("username")}!")
 
         // Temporary image list
         val imgList = mutableListOf<Int>()
