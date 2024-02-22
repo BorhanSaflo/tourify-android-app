@@ -1,6 +1,5 @@
 package com.tourify.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +32,7 @@ class HomeFragment : Fragment() {
 
         // Greeting text
         val textView: TextView = binding.greetingTextView
-        textView.setText("Hi, ${activity?.intent?.getStringExtra("username")}!")
+        textView.text = "Hi, %s!".format(activity?.intent?.getStringExtra("username"))
 
         // Temporary image list
         val imgList = mutableListOf<Int>()

@@ -2,14 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EBEBEB"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.search.SearchFragment">
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/text_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         if(FileHandler.readData("rememberMe", this).toBoolean()) {
             usernameEditText.setText(FileHandler.readData("username", this))
             passwordEditText.setText(FileHandler.readData("password", this))
-            rememberMeCheckBox.isChecked = true;
+            rememberMeCheckBox.isChecked = true
         }
 
 
