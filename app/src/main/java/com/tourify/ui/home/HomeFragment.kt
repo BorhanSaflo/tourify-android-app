@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.tourify.R
 import com.tourify.databinding.FragmentHomeBinding
+import com.tourify.ui.home.destination.DestinationFragment
 
 class HomeFragment : Fragment() {
 
@@ -62,6 +64,15 @@ class HomeFragment : Fragment() {
                 marginParams.setMargins(10, 10, 10, 10)
                 layoutParams = marginParams
             })
+        }
+
+        val destinationTestButton: Button = binding.destinationTestButton
+        destinationTestButton.setOnClickListener {
+            val fragment = DestinationFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.home_frame_layout, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
 
         return root

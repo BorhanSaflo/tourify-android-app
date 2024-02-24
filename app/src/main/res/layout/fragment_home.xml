@@ -2,106 +2,124 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EBEBEB"
     tools:context=".ui.home.HomeFragment">
 
-    <ScrollView
-        android:id="@+id/main_scroll_view"
+    <FrameLayout
+        android:id="@+id/home_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/home_main_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/greeting_text_view"
+            <LinearLayout
+                android:id="@+id/home_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="34sp"
-                tools:text="Hi, " />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/trending_constraint_layout"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginTop="16dp"
-                android:background="#FFFFFF">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/trending_text_view"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/greeting_text_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="-8dp"
-                    android:text="Trending"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/trending_scroll_view"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="34sp"
+                    tools:text="Hi, " />
 
-                <HorizontalScrollView
-                    android:id="@+id/trending_scroll_view"
-                    android:layout_width="0dp"
-                    android:layout_height="128dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/trending_constraint_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#FFFFFF">
 
-                    <LinearLayout
-                        android:id="@+id/trending_linear_layout"
+                    <TextView
+                        android:id="@+id/trending_text_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal" />
-                </HorizontalScrollView>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="-8dp"
+                        android:text="Trending"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/trending_scroll_view"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <HorizontalScrollView
+                        android:id="@+id/trending_scroll_view"
+                        android:layout_width="0dp"
+                        android:layout_height="128dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/near_you_constraint_layout"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginTop="32dp"
-                android:background="#FFFFFF">
+                        <LinearLayout
+                            android:id="@+id/trending_linear_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal" />
+                    </HorizontalScrollView>
 
-                <TextView
-                    android:id="@+id/near_you_text_view"
-                    android:layout_width="wrap_content"
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/near_you_constraint_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="32dp"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:id="@+id/near_you_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="-8dp"
+                        android:text="Near You"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/near_you_scroll_view"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/near_you_scroll_view"
+                        android:layout_width="0dp"
+                        android:layout_height="128dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:id="@+id/near_you_linear_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal" />
+                    </HorizontalScrollView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/destination_test_button"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="-8dp"
-                    android:text="Near You"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/near_you_scroll_view"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:text="Go To Destination View" />
 
-                <HorizontalScrollView
-                    android:id="@+id/near_you_scroll_view"
-                    android:layout_width="0dp"
-                    android:layout_height="128dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <LinearLayout
-                        android:id="@+id/near_you_linear_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal" />
-                </HorizontalScrollView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
