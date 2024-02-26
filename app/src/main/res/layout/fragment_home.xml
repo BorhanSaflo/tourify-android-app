@@ -60,7 +60,7 @@
                     <HorizontalScrollView
                         android:id="@+id/trending_scroll_view"
                         android:layout_width="0dp"
-                        android:layout_height="128dp"
+                        android:layout_height="140dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -76,35 +76,35 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/near_you_constraint_layout"
+                    android:id="@+id/most_liked_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:layout_marginTop="32dp"
                     android:background="#FFFFFF">
 
                     <TextView
-                        android:id="@+id/near_you_text_view"
+                        android:id="@+id/most_liked_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginBottom="-8dp"
-                        android:text="Near You"
+                        android:text="Most Liked"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/near_you_scroll_view"
+                        app:layout_constraintBottom_toTopOf="@+id/most_liked_scroll_view"
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <HorizontalScrollView
-                        android:id="@+id/near_you_scroll_view"
+                        android:id="@+id/most_liked_scroll_view"
                         android:layout_width="0dp"
-                        android:layout_height="128dp"
+                        android:layout_height="140dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <LinearLayout
-                            android:id="@+id/near_you_linear_layout"
+                            android:id="@+id/most_liked_linear_layout"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="horizontal" />

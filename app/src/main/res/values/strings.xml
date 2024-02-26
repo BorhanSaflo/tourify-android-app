@@ -4,4 +4,5 @@
     <string name="title_search">Search</string>
     <string name="title_explore">Explore</string>
     <string name="title_you">You</string>
+    <string name="destination_image">Destination</string>
 </resources>
