@@ -18,6 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ProgressBar
+                android:id="@+id/image_progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/destination_view_pager"
+                app:layout_constraintEnd_toEndOf="@+id/destination_view_pager"
+                app:layout_constraintStart_toStartOf="@+id/destination_view_pager"
+                app:layout_constraintTop_toTopOf="@+id/destination_view_pager" />
+
             <TextView
                 android:id="@+id/destination_location_text_view"
                 android:layout_width="wrap_content"

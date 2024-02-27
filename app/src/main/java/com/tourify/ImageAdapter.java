@@ -1,5 +1,6 @@
 package com.tourify;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
 
-    private List<Integer> images;
+    private List<Bitmap> images;
 
-    public ImageAdapter(List<Integer> images) {
+    public ImageAdapter(List<Bitmap> images) {
         this.images = images;
     }
 
@@ -27,7 +28,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        holder.imageView.setImageResource(images.get(position));
+        holder.imageView.setImageBitmap(images.get(position));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.tourify.ui.home
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
+import android.widget.Toast
+import com.tourify.ImageFetcher
 
 class HomeFragment : Fragment() {
 
@@ -99,8 +102,8 @@ class HomeFragment : Fragment() {
             val imageView = placeLayout.findViewById<ImageView>(R.id.image_view_destination)
             val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
 
-            // TODO: Replace with image
-            imageView.setImageResource(R.drawable.ic_dashboard_black_24dp)
+            // Replace link with `destination.imageUrl` once the database is updated
+            getImage("https://www.gstatic.com/webp/gallery/1.jpg") { bitmap -> imageView.setImageBitmap(bitmap) }
             textView.text = destination.name
 
             binding.trendingLinearLayout.addView(placeLayout)
@@ -114,8 +117,8 @@ class HomeFragment : Fragment() {
             val imageView = placeLayout.findViewById<ImageView>(R.id.image_view_destination)
             val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
 
-            // TODO: Replace with image
-            imageView.setImageResource(R.drawable.ic_home_black_24dp)
+            // Replace link with `destination.imageUrl` once the database is updated
+            getImage("https://www.gstatic.com/webp/gallery/2.jpg") { bitmap -> imageView.setImageBitmap(bitmap) }
             textView.text = destination.name
 
             binding.mostLikedLinearLayout.addView(placeLayout)
@@ -126,4 +129,18 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun getImage(url: String, onImageFetched: (Bitmap?) -> Unit) {
+        ImageFetcher.fetchImage(url) { bitmap ->
+            activity?.runOnUiThread {
+                if (bitmap == null) {
+                    Toast.makeText(requireContext(), "Failed to load image", Toast.LENGTH_SHORT).show()
+                    onImageFetched(null)
+                } else {
+                    onImageFetched(bitmap)
+                }
+            }
+        }
+    }
+
 }
