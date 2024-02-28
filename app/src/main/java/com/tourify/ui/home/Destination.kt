@@ -4,5 +4,5 @@ data class Destination(
     val id: String,
     val name: String,
     val country: String,
-    val imageUrl: String
+    val thumbnail: String
 )

@@ -102,8 +102,7 @@ class HomeFragment : Fragment() {
             val imageView = placeLayout.findViewById<ImageView>(R.id.image_view_destination)
             val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
 
-            // Replace link with `destination.imageUrl` once the database is updated
-            getImage("https://www.gstatic.com/webp/gallery/1.jpg") { bitmap -> imageView.setImageBitmap(bitmap) }
+            getImage(destination.thumbnail) { bitmap -> imageView.setImageBitmap(bitmap) }
             textView.text = destination.name
 
             binding.trendingLinearLayout.addView(placeLayout)
@@ -118,7 +117,7 @@ class HomeFragment : Fragment() {
             val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
 
             // Replace link with `destination.imageUrl` once the database is updated
-            getImage("https://www.gstatic.com/webp/gallery/2.jpg") { bitmap -> imageView.setImageBitmap(bitmap) }
+            getImage(destination.thumbnail) { bitmap -> imageView.setImageBitmap(bitmap) }
             textView.text = destination.name
 
             binding.mostLikedLinearLayout.addView(placeLayout)
