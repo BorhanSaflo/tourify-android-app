@@ -44,15 +44,6 @@ class HomeFragment : Fragment() {
         loadTrendingDestinations()
         loadMostLikedDestinations()
 
-        val destinationTestButton = binding.destinationTestButton
-        destinationTestButton.setOnClickListener {
-            val fragment = DestinationFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.home_frame_layout, fragment)
-                .addToBackStack(null)
-                .commit()
-        }
-
         return root
     }
 
@@ -62,7 +53,7 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     response.body()?.let { places ->
                         Log.d("HomeFragment", "Trending Destinations: $places")
-                        updateTrendingSection(places)
+                        updateSection(places, binding.trendingLinearLayout)
                     } ?: Log.d("HomeFragment", "No Trending Destinations Found")
                 } else {
                     Log.d("HomeFragment", "Failed to get trending destinations: ${response.errorBody()?.string()}")
@@ -81,7 +72,7 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     response.body()?.let { places ->
                         Log.d("HomeFragment", "Most Liked Destinations: $places")
-                        updateMostLikedSection(places)
+                        updateSection(places, binding.mostLikedLinearLayout)
                     } ?: Log.d("HomeFragment", "Couldn't find a list of most liked destinations")
                 } else {
                     Log.d("HomeFragment", "Failed to get most liked destinations: ${response.errorBody()?.string()}")
@@ -94,39 +85,21 @@ class HomeFragment : Fragment() {
         })
     }
 
-
-    private fun updateTrendingSection(destinations: List<Destination>) {
-        binding.trendingLinearLayout.removeAllViews()
+    private fun updateSection(destinations: List<Destination>, layout: ViewGroup) {
+        layout.removeAllViews()
         for (destination in destinations) {
-            val placeLayout = LayoutInflater.from(context).inflate(R.layout.item_destination_card, binding.trendingLinearLayout, false)
+            val placeLayout = LayoutInflater.from(context).inflate(R.layout.item_destination_card, layout, false)
             val imageView = placeLayout.findViewById<ImageView>(R.id.image_view_destination)
             val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
 
-            getImage(destination.thumbnail) { bitmap -> imageView.setImageBitmap(bitmap) }
             textView.text = destination.name
+            getImage(destination.thumbnail) { bitmap ->
+                imageView.setImageBitmap(bitmap)
+                setupImageClickListener(imageView)
+            }
 
-            binding.trendingLinearLayout.addView(placeLayout)
+            layout.addView(placeLayout)
         }
-    }
-
-    private fun updateMostLikedSection(destinations: List<Destination>) {
-        binding.mostLikedLinearLayout.removeAllViews()
-        for (destination in destinations) {
-            val placeLayout = LayoutInflater.from(context).inflate(R.layout.item_destination_card, binding.mostLikedLinearLayout, false)
-            val imageView = placeLayout.findViewById<ImageView>(R.id.image_view_destination)
-            val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
-
-            // Replace link with `destination.imageUrl` once the database is updated
-            getImage(destination.thumbnail) { bitmap -> imageView.setImageBitmap(bitmap) }
-            textView.text = destination.name
-
-            binding.mostLikedLinearLayout.addView(placeLayout)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun getImage(url: String, onImageFetched: (Bitmap?) -> Unit) {
@@ -142,4 +115,18 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupImageClickListener(imageView: ImageView) {
+        imageView.setOnClickListener {
+            val fragment = DestinationFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.home_frame_layout, fragment) // Ensure this is the correct ID for your container
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

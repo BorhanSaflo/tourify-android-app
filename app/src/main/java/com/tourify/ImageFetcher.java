@@ -42,7 +42,7 @@ public class ImageFetcher {
     }
 
 
-    public static void fetchImages(List<String> urlStrings, final ImageFetchListener listener) {
+    public static void fetchImages(final List<String> urlStrings, final ImageFetchListener listener) {
         for (String urlString : urlStrings) {
             fetchImage(urlString, listener);
         }
