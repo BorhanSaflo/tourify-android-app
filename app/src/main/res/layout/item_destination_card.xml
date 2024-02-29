@@ -5,6 +5,13 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <ProgressBar
+        android:id="@+id/progress_bar_destination"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:mirrorForRtl="false" />
+
     <ImageView
         android:id="@+id/image_view_destination"
         android:layout_width="100dp"
@@ -19,4 +26,5 @@
         android:text="Destination Name"
         android:layout_marginTop="4dp"
         android:textAlignment="center" />
+
 </LinearLayout>

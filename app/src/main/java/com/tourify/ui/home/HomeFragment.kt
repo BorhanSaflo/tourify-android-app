@@ -17,6 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.tourify.ImageFetcher
 
@@ -40,7 +41,7 @@ class HomeFragment : Fragment() {
         val textView: TextView = binding.greetingTextView
         textView.text = "Hi, %s!".format(activity?.intent?.getStringExtra("username"))
 
-        // Load data for Trending and Near You sections
+        // Load data for Trending and Most Liked sections
         loadTrendingDestinations()
         loadMostLikedDestinations()
 
@@ -91,11 +92,18 @@ class HomeFragment : Fragment() {
             val placeLayout = LayoutInflater.from(context).inflate(R.layout.item_destination_card, layout, false)
             val imageView = placeLayout.findViewById<ImageView>(R.id.image_view_destination)
             val textView = placeLayout.findViewById<TextView>(R.id.text_view_destination_name)
+            val loadingIcon = placeLayout.findViewById<ProgressBar>(R.id.progress_bar_destination)
 
             textView.text = destination.name
+
+            loadingIcon.visibility = View.VISIBLE
+            imageView.visibility = View.GONE
+
             getImage(destination.thumbnail) { bitmap ->
                 imageView.setImageBitmap(bitmap)
-                setupImageClickListener(imageView)
+                setupImageClickListener(imageView, destination.id.toInt())
+                loadingIcon.visibility = View.GONE
+                imageView.visibility = View.VISIBLE
             }
 
             layout.addView(placeLayout)
@@ -115,11 +123,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupImageClickListener(imageView: ImageView) {
+    private fun setupImageClickListener(imageView: ImageView, id : Int) {
         imageView.setOnClickListener {
+            val args = Bundle()
+            args.putInt("id", id)
+
             val fragment = DestinationFragment()
+            fragment.arguments = args
+
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.home_frame_layout, fragment) // Ensure this is the correct ID for your container
+                .replace(R.id.home_frame_layout, fragment)
                 .addToBackStack(null)
                 .commit()
         }

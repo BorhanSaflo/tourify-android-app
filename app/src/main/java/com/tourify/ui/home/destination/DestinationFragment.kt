@@ -37,10 +37,8 @@ class DestinationFragment : Fragment() {
         _binding = FragmentDestinationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        Log.d("DestinationFragment", "DestinationFragment created")
-        val id = 1
+        val id = requireArguments().getInt("id")
         loadDestinationData(id)
-        Log.d("DestinationFragment", "Destination data loaded")
 
         return root
     }
