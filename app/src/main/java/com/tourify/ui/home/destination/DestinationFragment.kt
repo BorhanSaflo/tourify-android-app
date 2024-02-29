@@ -84,8 +84,8 @@ class DestinationFragment : Fragment() {
                             "https://www.gstatic.com/webp/gallery/3.jpg"
                         )
                         displayImages(tempList)
-                        // Remove the line directly above and the list of URLs and
-                        // then uncomment the line above once the database supports it
+                        // TODO: Remove the line directly above, the list of URLs and
+                        // then uncomment that line above, once the database supports it
 
                     } else {
                         Log.d("DestinationFragment", "Couldn't find destination with id $id")

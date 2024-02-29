@@ -8,8 +8,12 @@
     <ProgressBar
         android:id="@+id/progress_bar_destination"
         style="?android:attr/progressBarStyle"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginBottom="34dp"
         android:mirrorForRtl="false" />
 
     <ImageView

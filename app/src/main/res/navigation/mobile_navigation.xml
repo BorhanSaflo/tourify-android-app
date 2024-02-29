@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_you"
-        android:name="com.tourify.ui.you.YouFragment"
+        android:name="com.tourify.ui.user.UserFragment"
         android:label="@string/title_you"
-        tools:layout="@layout/fragment_you" />
+        tools:layout="@layout/fragment_user" />
 </navigation>
