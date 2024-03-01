@@ -77,16 +77,7 @@ class DestinationFragment : Fragment() {
                     if (destination != null) {
                         binding.destinationLocationTextView.text = destination.name + ", " + destination.country
                         binding.destinationDescriptionTextView.text = destination.description
-                        //displayImages(destination.images)
-                        val tempList = listOf(
-                            "https://www.gstatic.com/webp/gallery/1.jpg",
-                            "https://www.gstatic.com/webp/gallery/2.jpg",
-                            "https://www.gstatic.com/webp/gallery/3.jpg"
-                        )
-                        displayImages(tempList)
-                        // TODO: Remove the line directly above, the list of URLs and
-                        // then uncomment that line above, once the database supports it
-
+                        displayImages(destination.images)
                     } else {
                         Log.d("DestinationFragment", "Couldn't find destination with id $id")
                     }
