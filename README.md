@@ -1,6 +1,11 @@
-# Tourify
+<p align="center">
+    <img src="https://github.com/BorhanSaflo/tourify-android-app/assets/60056206/da336e73-3459-45ba-b2cd-41b6288a5698" alt="Tourify Logo" width="100" />
+</p> 
+<h1 style="margin-top: 0px;" align="center"><b>Tourify</b></h1>
 
-A mobile application designed to help you discover and navigate your next tourism destination.
+<p align="center">
+Discover and explore your next tourism destination.
+</p>
 
 ## Description
 
