@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp">
 
@@ -16,19 +17,25 @@
         android:layout_marginBottom="34dp"
         android:mirrorForRtl="false" />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
     <ImageView
         android:id="@+id/image_view_destination"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/text_view_destination_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destination Name"
         android:layout_marginTop="4dp"
-        android:textAlignment="center" />
+        android:text="Destination Name"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
 
 </LinearLayout>

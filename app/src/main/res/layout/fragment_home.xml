@@ -20,7 +20,8 @@
         <ScrollView
             android:id="@+id/home_main_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/black">
 
             <LinearLayout
                 android:id="@+id/home_linear_layout"
@@ -32,9 +33,10 @@
                     android:id="@+id/greeting_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="20dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/purple_200"
                     android:textSize="34sp"
                     tools:text="Hi, " />
 
@@ -43,15 +45,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:layout_marginTop="16dp"
-                    android:background="#FFFFFF">
+                    android:background="#272727"
+                    android:paddingLeft="12dp">
 
                     <TextView
                         android:id="@+id/trending_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:text="Trending"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/purple_200"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/trending_scroll_view"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -61,6 +64,8 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="32dp"
+                        android:background="#272727"
+                        android:foregroundTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -80,15 +85,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:layout_marginTop="32dp"
-                    android:background="#FFFFFF">
+                    android:background="#272727">
 
                     <TextView
                         android:id="@+id/most_liked_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="12dp"
                         android:text="Most Liked"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/purple_200"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/most_liked_scroll_view"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -98,6 +104,8 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="32dp"
+                        android:background="#272727"
+                        android:foregroundTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

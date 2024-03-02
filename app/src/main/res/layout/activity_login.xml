@@ -3,26 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <ImageView
         android:id="@+id/logo_image_view"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image__15_" />
+        app:srcCompat="@drawable/tourify_text_logo" />
 
     <EditText
         android:id="@+id/username_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="64dp"
+        android:backgroundTint="@color/purple_200"
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="#C3C3C3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_image_view" />
@@ -32,9 +36,12 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_200"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="#C3C3C3"
         app:layout_constraintEnd_toEndOf="@+id/username_edit_text"
         app:layout_constraintStart_toStartOf="@+id/username_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/username_edit_text" />
@@ -55,6 +62,7 @@
         android:layout_height="wrap_content"
         android:text="Remember Me"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/username_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
 
@@ -64,7 +72,9 @@
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#2196F3"
+        android:textColor="@color/purple_200"
+        android:textColorHighlight="@color/purple_500"
+        android:textColorLink="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/login_button"
         app:layout_constraintStart_toStartOf="@+id/login_button"
@@ -77,7 +87,9 @@
         android:layout_marginTop="8dp"
         android:text="Forgot Password"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#2196F3"
+        android:textColor="@color/purple_200"
+        android:textColorHighlight="@color/purple_500"
+        android:textColorLink="@color/purple_200"
         app:layout_constraintEnd_toEndOf="@+id/login_button"
         app:layout_constraintStart_toStartOf="@+id/login_button"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />

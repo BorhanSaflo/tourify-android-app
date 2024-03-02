@@ -75,7 +75,11 @@ class DestinationFragment : Fragment() {
                 if (response.isSuccessful) {
                     val destination = response.body()
                     if (destination != null) {
-                        binding.destinationLocationTextView.text = destination.name + ", " + destination.country
+                        binding.destinationLocationTextView.text = buildString {
+                            append(destination.name)
+                            append(", ")
+                            append(destination.country)
+                        }
                         binding.destinationDescriptionTextView.text = destination.description
                         displayImages(destination.images)
                     } else {
