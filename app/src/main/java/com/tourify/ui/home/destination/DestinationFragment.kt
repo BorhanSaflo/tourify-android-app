@@ -82,11 +82,7 @@ class DestinationFragment : Fragment() {
                         }
                         binding.destinationDescriptionTextView.text = destination.description
                         displayImages(destination.images)
-                    } else {
-                        Log.d("DestinationFragment", "Couldn't find destination with id $id")
                     }
-                } else {
-                    Log.d("DestinationFragment", "Failed to get destination with id $id: ${response.errorBody()?.string()}")
                 }
             }
 

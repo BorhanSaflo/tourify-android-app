@@ -10,7 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.tourify.LoginActivity
+import com.tourify.R
 import com.tourify.databinding.FragmentUserBinding
+import com.tourify.ui.user.savedDestinations.SavedDestinationsFragment
 
 class UserFragment : Fragment() {
 
@@ -34,22 +36,18 @@ class UserFragment : Fragment() {
         // Sign out and return to login menu if clicked
         val signOutButton: Button = binding.userSignOutButton
         signOutButton.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-
-            builder.apply {
-                setMessage("Are you sure you want to sign out?")
-                setPositiveButton("Yes") { dialog, id ->
-                    val intent = Intent(activity, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                }
-                setNegativeButton("No") { dialog, id ->
-                    dialog.dismiss()
-                }
-            }
-
-            builder.create().show()
+            signoutSequence()
         }
+
+        // TODO: Profile button
+
+        // Saved destinations button
+        val savedDestinationsButton: Button = binding.userSavedDestinationsButton
+        savedDestinationsButton.setOnClickListener {
+            changeFragment(SavedDestinationsFragment())
+        }
+
+        // TODO: Settings button
 
         return root
     }
@@ -57,5 +55,30 @@ class UserFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun signoutSequence() {
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.apply {
+            setMessage("Are you sure you want to sign out?")
+            setPositiveButton("Yes") { dialog, id ->
+                val intent = Intent(activity, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+            setNegativeButton("No") { dialog, id ->
+                dialog.dismiss()
+            }
+        }
+
+        builder.create().show()
+    }
+
+    private fun changeFragment(newFragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.user_frame_layout, newFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
