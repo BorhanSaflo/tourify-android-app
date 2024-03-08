@@ -47,17 +47,10 @@ class SavedDestinationsFragment : Fragment() {
     }
 
     private fun loadMostLikedDestinations() {
-        RetrofitClient.apiService.getMostLikedDestinations().enqueue(object :
-            Callback<List<Destination>> {
+        RetrofitClient.apiService.getMostLikedDestinations().enqueue(object : Callback<List<Destination>> {
             override fun onResponse(call: Call<List<Destination>>, response: Response<List<Destination>>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { places ->
-                        Log.d("HomeFragment", "Most Liked Destinations: $places")
-                        updateSection(places, binding.savedDestinationsGridLayout)
-                    } ?: Log.d("HomeFragment", "Couldn't find a list of most liked destinations")
-                } else {
-                    Log.d("HomeFragment", "Failed to get most liked destinations: ${response.errorBody()?.string()}")
-                }
+                if (response.isSuccessful)
+                    response.body()?.let { places -> updateSection(places, binding.savedDestinationsGridLayout) }
             }
 
             override fun onFailure(call: Call<List<Destination>>, t: Throwable) {
@@ -84,9 +77,7 @@ class SavedDestinationsFragment : Fragment() {
                 setupImageClickListener(imageView, destination.id.toInt())
                 loadingIcon.visibility = View.GONE
                 imageView.visibility = View.VISIBLE
-                val layoutParams = imageView.layoutParams
-                layoutParams.width = layout.width / 3 - placeLayout.paddingLeft * 3
-                imageView.layoutParams = layoutParams
+                imageView.layoutParams.width = layout.width / 3 - placeLayout.paddingLeft * 3
             }
 
             layout.addView(placeLayout)

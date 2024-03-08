@@ -51,14 +51,8 @@ class HomeFragment : Fragment() {
     private fun loadTrendingDestinations() {
         RetrofitClient.apiService.getTrendingDestinations().enqueue(object : Callback<List<Destination>> {
             override fun onResponse(call: Call<List<Destination>>, response: Response<List<Destination>>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { places ->
-                        Log.d("HomeFragment", "Trending Destinations: $places")
-                        updateSection(places, binding.trendingLinearLayout)
-                    } ?: Log.d("HomeFragment", "No Trending Destinations Found")
-                } else {
-                    Log.d("HomeFragment", "Failed to get trending destinations: ${response.errorBody()?.string()}")
-                }
+                if (response.isSuccessful)
+                    response.body()?.let { places -> updateSection(places, binding.trendingLinearLayout) }
             }
 
             override fun onFailure(call: Call<List<Destination>>, t: Throwable) {
@@ -70,14 +64,8 @@ class HomeFragment : Fragment() {
     private fun loadMostLikedDestinations() {
         RetrofitClient.apiService.getMostLikedDestinations().enqueue(object : Callback<List<Destination>> {
             override fun onResponse(call: Call<List<Destination>>, response: Response<List<Destination>>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { places ->
-                        Log.d("HomeFragment", "Most Liked Destinations: $places")
-                        updateSection(places, binding.mostLikedLinearLayout)
-                    } ?: Log.d("HomeFragment", "Couldn't find a list of most liked destinations")
-                } else {
-                    Log.d("HomeFragment", "Failed to get most liked destinations: ${response.errorBody()?.string()}")
-                }
+                if (response.isSuccessful)
+                    response.body()?.let { places -> updateSection(places, binding.mostLikedLinearLayout) }
             }
 
             override fun onFailure(call: Call<List<Destination>>, t: Throwable) {
