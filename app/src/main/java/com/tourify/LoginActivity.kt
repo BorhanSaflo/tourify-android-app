@@ -8,6 +8,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.tourify.api.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -66,6 +70,8 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Missing Information", Toast.LENGTH_SHORT).show()
             return false
         }
+
+        //RetrofitClient.apiService.loginUser(username, password)
 
         return true
     }

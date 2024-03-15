@@ -77,6 +77,6 @@ class SignupActivity : AppCompatActivity(){
     }
 
     private fun createAccount(username: String, password: String, email: String, phone: String) {
-        RetrofitClient.apiService.registerUser(username, email, password)
+        RetrofitClient.apiService.registerUser(email, password, username)
     }
 }

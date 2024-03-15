@@ -20,7 +20,7 @@ interface ApiService {
     fun registerUser(username: String, email: String, password: String): Call<Void>
 
     @POST("auth/login")
-    fun loginUser(username: String, password: String): Call<Void>
+    fun loginUser(email: String, password: String): Call<String>
 
     @POST("auth/logout")
     fun logoutUser(): Call<Void>
