@@ -71,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
             return false
         }
 
+        // Uncomment to crash the app on login
         //RetrofitClient.apiService.loginUser(username, password)
 
         return true
