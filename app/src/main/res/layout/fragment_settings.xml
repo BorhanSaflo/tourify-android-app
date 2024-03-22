@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/settings_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Settings"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/settings_theme_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:text="Theme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/settings_notifications_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Notifications"
+                app:layout_constraintEnd_toEndOf="@+id/settings_theme_button"
+                app:layout_constraintStart_toStartOf="@+id/settings_theme_button"
+                app:layout_constraintTop_toBottomOf="@+id/settings_theme_button" />
+
+            <Button
+                android:id="@+id/settings_delete_account_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Delete Account"
+                app:layout_constraintEnd_toEndOf="@+id/settings_language_button"
+                app:layout_constraintStart_toStartOf="@+id/settings_language_button"
+                app:layout_constraintTop_toBottomOf="@+id/settings_language_button" />
+
+            <Button
+                android:id="@+id/settings_language_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                app:layout_constraintEnd_toEndOf="@+id/settings_notifications_button"
+                app:layout_constraintStart_toStartOf="@+id/settings_notifications_button"
+                app:layout_constraintTop_toBottomOf="@+id/settings_notifications_button" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
