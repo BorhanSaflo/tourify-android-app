@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.tourify.LoginActivity
 import com.tourify.R
 import com.tourify.databinding.FragmentUserBinding
+import com.tourify.ui.user.profile.ProfileFragment
 import com.tourify.ui.user.savedDestinations.SavedDestinationsFragment
+import com.tourify.ui.user.settings.SettingsFragment
 
 class UserFragment : Fragment() {
 
@@ -39,7 +41,11 @@ class UserFragment : Fragment() {
             signoutSequence()
         }
 
-        // TODO: Profile button
+        // Profile button
+        val profileButton: Button = binding.userProfileButton
+        profileButton.setOnClickListener {
+            changeFragment(ProfileFragment())
+        }
 
         // Saved destinations button
         val savedDestinationsButton: Button = binding.userSavedDestinationsButton
@@ -47,7 +53,11 @@ class UserFragment : Fragment() {
             changeFragment(SavedDestinationsFragment())
         }
 
-        // TODO: Settings button
+        // Settings button
+        val settingsButton: Button = binding.userSettingsButton
+        settingsButton.setOnClickListener {
+            changeFragment(SettingsFragment())
+        }
 
         return root
     }

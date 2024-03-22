@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <FrameLayout
         android:id="@+id/user_info_frame_layout"
@@ -36,6 +37,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="60dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/purple_200"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_info_image"
                 tools:text="Email: " />
@@ -47,6 +49,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="32dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/purple_200"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_info_email"
                 tools:text="Username: " />
@@ -58,6 +61,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="32dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/purple_200"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_info_username"
                 tools:text="Password: " />
