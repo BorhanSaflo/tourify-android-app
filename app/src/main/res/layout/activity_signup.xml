@@ -48,18 +48,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
             <EditText
-                android:id="@+id/signup_password_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="@+id/signup_username_edit_text"
-                app:layout_constraintStart_toStartOf="@+id/signup_username_edit_text"
-                app:layout_constraintTop_toBottomOf="@+id/signup_username_edit_text" />
-
-            <EditText
                 android:id="@+id/signup_email_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -69,16 +57,16 @@
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="@+id/signup_username_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/signup_username_edit_text"
-                app:layout_constraintTop_toBottomOf="@+id/signup_password_edit_text" />
+                app:layout_constraintTop_toBottomOf="@+id/signup_username_edit_text" />
 
             <EditText
-                android:id="@+id/signup_phone_edit_text"
+                android:id="@+id/signup_password_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Phone"
-                android:inputType="phone"
+                android:hint="Password"
+                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="@+id/signup_username_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/signup_username_edit_text"
                 app:layout_constraintTop_toBottomOf="@+id/signup_email_edit_text" />
@@ -91,7 +79,7 @@
                 android:text="Sign Up"
                 app:layout_constraintEnd_toEndOf="@+id/signup_username_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/signup_username_edit_text"
-                app:layout_constraintTop_toBottomOf="@+id/signup_phone_edit_text" />
+                app:layout_constraintTop_toBottomOf="@+id/signup_password_edit_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

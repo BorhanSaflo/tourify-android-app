@@ -14,7 +14,6 @@ class SignupActivity : AppCompatActivity(){
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var emailEditText: EditText
-    private lateinit var phoneEditText: EditText
     private lateinit var signupButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +24,6 @@ class SignupActivity : AppCompatActivity(){
         usernameEditText = findViewById(R.id.signup_username_edit_text)
         passwordEditText = findViewById(R.id.signup_password_edit_text)
         emailEditText = findViewById(R.id.signup_email_edit_text)
-        phoneEditText = findViewById(R.id.signup_phone_edit_text)
         signupButton = findViewById(R.id.signup_button)
 
 
@@ -33,10 +31,9 @@ class SignupActivity : AppCompatActivity(){
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
             val email = emailEditText.text.toString()
-            val phone = phoneEditText.text.toString()
 
-            if(validateCredentials(username, password, email, phone)) {
-                createAccount(username, password, email, phone)
+            if(validateCredentials(username, password, email)) {
+                createAccount(username, password, email)
                 finish()
             }
         }
@@ -47,8 +44,8 @@ class SignupActivity : AppCompatActivity(){
         }
     }
 
-    private fun validateCredentials(username: String, password: String, email: String, phone: String): Boolean {
-        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+    private fun validateCredentials(username: String, password: String, email: String): Boolean {
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -68,15 +65,10 @@ class SignupActivity : AppCompatActivity(){
             return false
         }
 
-        if (phone.length != 10) {
-            Toast.makeText(this, "Invalid phone number", Toast.LENGTH_SHORT).show()
-            return false
-        }
-
         return true
     }
 
-    private fun createAccount(username: String, password: String, email: String, phone: String) {
+    private fun createAccount(username: String, password: String, email: String) {
         RetrofitClient.apiService.registerUser(email, password, username)
     }
 }
