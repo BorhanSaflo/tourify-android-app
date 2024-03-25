@@ -15,13 +15,4 @@ interface ApiService {
 
     @GET("destination/{id}")
     fun getDestinationById(@Path("id") id: Int): Call<Destination>
-
-    @POST("auth/register")
-    fun registerUser(username: String, email: String, password: String): Call<Void>
-
-    @POST("auth/login")
-    fun loginUser(email: String, password: String): Call<String>
-
-    @POST("auth/logout")
-    fun logoutUser(): Call<Void>
 }

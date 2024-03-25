@@ -33,7 +33,7 @@ class SignupActivity : AppCompatActivity(){
             val email = emailEditText.text.toString()
 
             if(validateCredentials(username, password, email)) {
-                createAccount(username, password, email)
+//                createAccount(username, password, email)
                 finish()
             }
         }
@@ -66,9 +66,5 @@ class SignupActivity : AppCompatActivity(){
         }
 
         return true
-    }
-
-    private fun createAccount(username: String, password: String, email: String) {
-        RetrofitClient.apiService.registerUser(email, password, username)
     }
 }
