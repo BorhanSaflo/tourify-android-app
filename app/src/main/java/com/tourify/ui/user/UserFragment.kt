@@ -2,12 +2,14 @@ package com.tourify.ui.user
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.tourify.LoginActivity
 import com.tourify.R
@@ -15,8 +17,12 @@ import com.tourify.databinding.FragmentUserBinding
 import com.tourify.ui.user.profile.ProfileFragment
 import com.tourify.ui.user.savedDestinations.SavedDestinationsFragment
 import com.tourify.ui.user.settings.SettingsFragment
+import com.tourify.viewmodels.TokenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserFragment : Fragment() {
+    private val tokenViewModel: TokenViewModel by activityViewModels()
 
     private var _binding: FragmentUserBinding? = null
 
@@ -73,11 +79,15 @@ class UserFragment : Fragment() {
         builder.apply {
             setMessage("Are you sure you want to sign out?")
             setPositiveButton("Yes") { dialog, id ->
-                val intent = Intent(activity, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
+                // before
+                Log.w("Signout", "Before: ${tokenViewModel.token.value}")
+                tokenViewModel.deleteToken()
+                // after
+                Log.w("Signout", "After: ${tokenViewModel.token.value}")
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
             }
             setNegativeButton("No") { dialog, id ->
+                Log.w("Signout", "Token: ${tokenViewModel.token.value}")
                 dialog.dismiss()
             }
         }

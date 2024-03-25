@@ -1,5 +1,6 @@
 package com.tourify.utils
 
+import android.util.Log
 import com.google.gson.Gson
 import com.tourify.models.ErrorResponse
 import kotlinx.coroutines.Dispatchers
@@ -22,9 +23,14 @@ fun<T> apiRequestFlow(call: suspend () -> Response<T>): Flow<ApiResponse<T>> = f
                 }
             } else {
                 response.errorBody()?.let { error ->
-                    error.close()
-                    val parsedError: ErrorResponse = Gson().fromJson(error.charStream(), ErrorResponse::class.java)
-                    emit(ApiResponse.Failure(parsedError.message, parsedError.code))
+                    val errorString = error.string() // Read the error content into a string
+                    error.close() // Close the error body
+        
+                    // Now you can use errorString multiple times
+                    val parsedError = Gson().fromJson(errorString, ErrorResponse::class.java)
+                    Log.w("apiRequestFlow", "Error: $errorString")
+                    Log.w("apiRequestFlow", "Error: ${parsedError.errorMessage}")
+                    emit(ApiResponse.Failure(parsedError.errorMessage, parsedError.code))
                 }
             }
         } catch (e: Exception) {
