@@ -33,8 +33,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        Log.w("LoginActivity", "Token: ${tokenViewModel.token.value}")
-
         // Initialize UI components
         usernameEditText = findViewById(R.id.username_edit_text)
         passwordEditText = findViewById(R.id.password_edit_text)
@@ -87,7 +85,6 @@ class LoginActivity : AppCompatActivity() {
             when(it) {
                 is ApiResponse.Failure -> {
                     Toast.makeText(this, it.errorMessage, Toast.LENGTH_SHORT).show()
-                    Log.w("LoginActivity", "Error: ${it.errorMessage}")
                 }
                 ApiResponse.Loading -> Log.w("LoginActivity", "Loading...")
                 is ApiResponse.Success -> {
