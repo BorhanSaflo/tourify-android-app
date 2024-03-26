@@ -1,20 +1,32 @@
 package com.tourify
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.tourify.api.RetrofitClient
+import com.tourify.models.Registration
+import com.tourify.utils.ApiResponse
+import com.tourify.viewmodels.AuthViewModel
+import com.tourify.viewmodels.CoroutinesErrorHandler
+import com.tourify.viewmodels.TokenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class SignupActivity : AppCompatActivity(){
+@AndroidEntryPoint
+class SignupActivity : AppCompatActivity() {
 
     private lateinit var closeButton: ImageButton
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var emailEditText: EditText
     private lateinit var signupButton: Button
+
+    private val viewModel: AuthViewModel by viewModels()
+    private val tokenViewModel: TokenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,21 +38,38 @@ class SignupActivity : AppCompatActivity(){
         emailEditText = findViewById(R.id.signup_email_edit_text)
         signupButton = findViewById(R.id.signup_button)
 
-
         signupButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-            val password = passwordEditText.text.toString()
-            val email = emailEditText.text.toString()
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+            val email = emailEditText.text.toString().trim()
 
-            if(validateCredentials(username, password, email)) {
-                createAccount(username, password, email)
-                finish()
+            if (validateCredentials(username, password, email)) {
+                viewModel.register(
+                    Registration(email, password, username),
+                    object : CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+                            Toast.makeText(this@SignupActivity, "Error! $message", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
             }
         }
 
-
         closeButton.setOnClickListener {
             finish()
+        }
+
+        viewModel.loginResponse.observe(this) { response ->
+            when(response) {
+                is ApiResponse.Failure -> {
+                    Toast.makeText(this, response.errorMessage, Toast.LENGTH_SHORT).show()
+                }
+                ApiResponse.Loading -> Log.w("SignupActivity", "Loading...")
+                is ApiResponse.Success -> {
+                    tokenViewModel.saveToken(response.data.token) // Save the token received from registration.
+                    navigateToMainActivity() // Navigate to the Main Activity
+                }
+            }
         }
     }
 
@@ -68,7 +97,9 @@ class SignupActivity : AppCompatActivity(){
         return true
     }
 
-    private fun createAccount(username: String, password: String, email: String) {
-        RetrofitClient.apiService.registerUser(email, password, username)
+    private fun navigateToMainActivity() {
+        // Assuming you have a MainActivity that serves as the entry point after login/registration.
+        startActivity(Intent(this, MainActivity::class.java))
+        finish() // Finish SignupActivity to remove it from the activity stack.
     }
 }
