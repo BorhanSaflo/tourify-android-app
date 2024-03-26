@@ -1,4 +1,4 @@
-package com.tourify.ui.home.destination
+package com.tourify.ui.destination
 
 import androidx.lifecycle.MutableLiveData
 import com.tourify.models.Destination

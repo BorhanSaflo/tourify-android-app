@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.tourify.R
-import com.tourify.ui.home.destination.DestinationFragment
+import com.tourify.ui.destination.DestinationFragment
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels

@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.tourify.ImageFetcher
 import com.tourify.R
 import com.tourify.databinding.FragmentSavedDestinationsBinding
-import com.tourify.ui.home.destination.DestinationFragment
+import com.tourify.ui.destination.DestinationFragment
 
 class SavedDestinationsFragment : Fragment() {
 

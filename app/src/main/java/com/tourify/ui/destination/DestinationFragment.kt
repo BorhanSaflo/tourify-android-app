@@ -1,4 +1,4 @@
-package com.tourify.ui.home.destination
+package com.tourify.ui.destination
 
 import android.graphics.Bitmap
 import android.os.Bundle
