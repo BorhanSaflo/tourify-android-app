@@ -1,7 +1,7 @@
 package com.tourify.repository
 
 import com.tourify.models.Auth
-import com.tourify.service.auth.AuthApiService
+import com.tourify.api.AuthApiService
 import com.tourify.utils.apiRequestFlow
 import javax.inject.Inject
 

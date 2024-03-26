@@ -1,9 +1,9 @@
 package com.tourify
 
+import com.tourify.api.ApiService
 import com.tourify.repository.AuthRepository
 import com.tourify.repository.MainRepository
-import com.tourify.service.auth.AuthApiService
-import com.tourify.service.main.MainApiService
+import com.tourify.api.AuthApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +17,5 @@ class HiltModule {
     fun provideAuthRepository(authApiService: AuthApiService) = AuthRepository(authApiService)
 
     @Provides
-    fun provideMainRepository(mainApiService: MainApiService) = MainRepository(mainApiService)
+    fun provideMainRepository(mainApiService: ApiService) = MainRepository(mainApiService)
 }

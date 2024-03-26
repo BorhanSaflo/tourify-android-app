@@ -1,4 +1,4 @@
-package com.tourify.service.auth
+package com.tourify.api
 
 import com.tourify.models.Auth
 import com.tourify.models.LoginResponse

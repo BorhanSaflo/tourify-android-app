@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.tourify.service.auth.AuthApiService
+import com.tourify.api.ApiService
+import com.tourify.api.AuthApiService
 import com.tourify.utils.AuthInterceptor
-import com.tourify.service.main.MainApiService
 import com.tourify.utils.AuthAuthenticator
 import com.tourify.utils.TokenManager
 import dagger.Module
@@ -72,9 +72,9 @@ class SingletonModule {
 
     @Singleton
     @Provides
-    fun provideMainAPIService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): MainApiService =
+    fun provideMainAPIService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): ApiService =
         retrofit
             .client(okHttpClient)
             .build()
-            .create(MainApiService::class.java)
+            .create(ApiService::class.java)
 }

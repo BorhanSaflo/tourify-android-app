@@ -2,7 +2,7 @@ package com.tourify.utils
 
 import com.tourify.BuildConfig
 import com.tourify.models.LoginResponse
-import com.tourify.service.auth.AuthApiService
+import com.tourify.api.AuthApiService
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.*
