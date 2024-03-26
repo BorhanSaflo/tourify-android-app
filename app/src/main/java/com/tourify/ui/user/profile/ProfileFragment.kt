@@ -1,21 +1,17 @@
 package com.tourify.ui.user.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
+import com.tourify.R
 import com.tourify.databinding.FragmentProfileBinding
-import com.tourify.api.RetrofitClient
-import com.tourify.models.UserInfoResponse
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.tourify.utils.ApiResponse
+import com.tourify.viewmodels.CoroutinesErrorHandler
 
 class ProfileFragment : Fragment() {
 
@@ -25,42 +21,37 @@ class ProfileFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var emailTextView: TextView
-    private lateinit var usernameTextView: TextView
-    private lateinit var passwordTextView: TextView
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val profileViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
-
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        emailTextView = binding.userInfoEmail
-        usernameTextView = binding.userInfoUsername
-        passwordTextView = binding.userInfoPassword
-
-        return root
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
-            val response = RetrofitClient.apiService.getUserInfo()
-            if(response.isSuccessful && response.body() != null) {
-                val userInfo = response.body()!!
-                emailTextView.text = userInfo.userInfo.email
-                usernameTextView.text = userInfo.userInfo.name
-            } else {
-                Log.d("ProfileFragment", "Failed to get user info")
+        val emailTextView: TextView = binding.userInfoEmail
+        val usernameTextView: TextView = binding.userInfoUsername
+
+        viewModel.userInfoResponse.observe(viewLifecycleOwner) {
+            val profileInfo = when (it) {
+                is ApiResponse.Success -> it.data.userInfo
+                else -> null
+            }
+
+            if (profileInfo != null) {
+                emailTextView.text = profileInfo.email
+                usernameTextView.text = profileInfo.name
             }
         }
+
+        viewModel.getUserInfo(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onDestroyView() {
