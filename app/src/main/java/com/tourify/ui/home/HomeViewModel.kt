@@ -1,6 +1,7 @@
 package com.tourify.ui.home
 
 import androidx.lifecycle.MutableLiveData
+import com.tourify.models.DestinationResult
 import com.tourify.models.UserInfoResponse
 import com.tourify.repository.MainRepository
 import com.tourify.utils.ApiResponse
@@ -17,10 +18,40 @@ class HomeViewModel @Inject constructor(
     private val _userInfoResponse = MutableLiveData<ApiResponse<UserInfoResponse>>()
     val userInfoResponse = _userInfoResponse
 
+    private val _trendingDestinationsResponse = MutableLiveData<ApiResponse<List<DestinationResult>>>()
+    val trendingDestinationsResponse = _trendingDestinationsResponse
+
+    private val _mostLikedDestinationsResponse = MutableLiveData<ApiResponse<List<DestinationResult>>>()
+    val mostLikedDestinationsResponse = _mostLikedDestinationsResponse
+
+    private val _mostViewedDestinationsResponse = MutableLiveData<ApiResponse<List<DestinationResult>>>()
+    val mostViewedDestinationsResponse = _mostViewedDestinationsResponse
+
     fun getUserInfo(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
         _userInfoResponse,
         coroutinesErrorHandler,
     ) {
         mainRepository.getUserInfo()
+    }
+
+    fun getTrendingDestinations(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _trendingDestinationsResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.getTrendingDestinations()
+    }
+
+    fun getMostLikedDestinations(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _mostLikedDestinationsResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.getMostLikedDestinations()
+    }
+
+    fun getMostViewedDestinations(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _mostViewedDestinationsResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.getMostViewedDestinations()
     }
 }

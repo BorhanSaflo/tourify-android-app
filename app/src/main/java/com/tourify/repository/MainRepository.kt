@@ -10,4 +10,20 @@ class MainRepository @Inject constructor(
     fun getUserInfo() = apiRequestFlow {
         mainApiService.getUserInfo()
     }
+
+    fun getTrendingDestinations() = apiRequestFlow {
+        mainApiService.getTrendingDestinations()
+    }
+
+    fun getMostViewedDestinations() = apiRequestFlow {
+        mainApiService.getMostViewedDestinations()
+    }
+
+    fun getMostLikedDestinations() = apiRequestFlow {
+        mainApiService.getMostLikedDestinations()
+    }
+
+    fun getDestination(id: Int) = apiRequestFlow {
+        mainApiService.getDestination(id)
+    }
 }

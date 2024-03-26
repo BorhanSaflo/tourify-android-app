@@ -9,16 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.tourify.R
-import com.tourify.api.RetrofitClient
 import com.tourify.ui.home.destination.DestinationFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.tourify.ImageFetcher
+import com.tourify.models.DestinationResult
 import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,38 +48,55 @@ class HomeFragment : Fragment() {
             }
         })
 
-        fun loadTrendingDestinations() {
-            RetrofitClient.apiService.getTrendingDestinations().enqueue(object : Callback<List<Destination>> {
-                override fun onResponse(call: Call<List<Destination>>, response: Response<List<Destination>>) {
-                    if (response.isSuccessful)
-                        response.body()?.let { places -> updateSection(places, view.findViewById(R.id.trending_linear_layout)) }
-                }
-
-                override fun onFailure(call: Call<List<Destination>>, t: Throwable) {
-                    Log.d("HomeFragment", "Error fetching trending destinations: ${t.message}")
-                }
-            })
+        // Trending destinations
+        val trendingLayout: ViewGroup = view.findViewById(R.id.trending_linear_layout)
+        viewModel.trendingDestinationsResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Success -> updateSection(it.data, trendingLayout)
+                is ApiResponse.Failure -> Toast.makeText(requireContext(), "Failed to load trending destinations", Toast.LENGTH_SHORT).show()
+                ApiResponse.Loading -> {}
+            }
         }
 
-        fun loadMostLikedDestinations() {
-            RetrofitClient.apiService.getMostLikedDestinations().enqueue(object : Callback<List<Destination>> {
-                override fun onResponse(call: Call<List<Destination>>, response: Response<List<Destination>>) {
-                    if (response.isSuccessful)
-                        response.body()?.let { places -> updateSection(places, view.findViewById(R.id.most_liked_linear_layout)) }
-                }
+        viewModel.getTrendingDestinations(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        })
 
-                override fun onFailure(call: Call<List<Destination>>, t: Throwable) {
-                    Log.d("HomeFragment", "Error fetching most liked destinations: ${t.message}")
-                }
-            })
+        // Most liked destinations
+        val mostLikedLayout: ViewGroup = view.findViewById(R.id.most_liked_linear_layout)
+        viewModel.mostLikedDestinationsResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Success -> updateSection(it.data, mostLikedLayout)
+                is ApiResponse.Failure -> Toast.makeText(requireContext(), "Failed to load most liked destinations", Toast.LENGTH_SHORT).show()
+                ApiResponse.Loading -> {}
+            }
         }
 
-        // Load data for Trending and Most Liked sections
-        loadTrendingDestinations()
-        loadMostLikedDestinations()
+        viewModel.getMostLikedDestinations(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        val mostViewedLayout: ViewGroup = view.findViewById(R.id.most_viewed_linear_layout)
+        viewModel.mostViewedDestinationsResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Success -> updateSection(it.data, mostViewedLayout)
+                is ApiResponse.Failure -> Toast.makeText(requireContext(), "Failed to load most viewed destinations", Toast.LENGTH_SHORT).show()
+                ApiResponse.Loading -> {}
+            }
+        }
+
+        viewModel.getMostViewedDestinations(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
-    private fun updateSection(destinations: List<Destination>, layout: ViewGroup) {
+    private fun updateSection(destinations: List<DestinationResult>, layout: ViewGroup) {
         layout.removeAllViews()
         for (destination in destinations) {
             val placeLayout = LayoutInflater.from(context).inflate(R.layout.item_destination_card, layout, false)
