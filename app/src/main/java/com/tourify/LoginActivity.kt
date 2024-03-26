@@ -41,11 +41,23 @@ class LoginActivity : AppCompatActivity() {
         signupTextView = findViewById(R.id.signup_text_view)
 
         // Load saved credentials if "Remember Me" is checked
-        val isRememberMe = FileHandler.readData("rememberMe", this).toBoolean()
-        if (isRememberMe) {
+        Log.w("Remember", FileHandler.readData("rememberMe", this))
+        if (FileHandler.readData("rememberMe", this) == "true") {
             usernameEditText.setText(FileHandler.readData("username", this))
             passwordEditText.setText(FileHandler.readData("password", this))
             rememberMeCheckBox.isChecked = true
+        } else {
+            usernameEditText.setText("")
+            passwordEditText.setText("")
+            rememberMeCheckBox.isChecked = false
+        }
+
+        rememberMeCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            if (!isChecked) {
+                FileHandler.writeData("username", "", this)
+                FileHandler.writeData("password", "", this)
+                FileHandler.writeData("rememberMe", "false", this)
+            }
         }
 
         // Setup Login button click listener
@@ -68,10 +80,6 @@ class LoginActivity : AppCompatActivity() {
                 FileHandler.writeData("username", username, this)
                 FileHandler.writeData("password", password, this)
                 FileHandler.writeData("rememberMe", "true", this)
-            } else {
-                FileHandler.writeData("username", "", this)
-                FileHandler.writeData("password", "", this)
-                FileHandler.writeData("rememberMe", "false", this)
             }
         }
 
