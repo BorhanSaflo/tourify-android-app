@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var usernameEditText: EditText
+    private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var rememberMeCheckBox: CheckBox
     private lateinit var loginButton: Button
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // Initialize UI components
-        usernameEditText = findViewById(R.id.username_edit_text)
+        emailEditText = findViewById(R.id.email_edit_text)
         passwordEditText = findViewById(R.id.password_edit_text)
         rememberMeCheckBox = findViewById(R.id.remember_me_check_box)
         loginButton = findViewById(R.id.login_button)
@@ -43,18 +43,18 @@ class LoginActivity : AppCompatActivity() {
         // Load saved credentials if "Remember Me" is checked
         Log.w("Remember", FileHandler.readData("rememberMe", this))
         if (FileHandler.readData("rememberMe", this) == "true") {
-            usernameEditText.setText(FileHandler.readData("username", this))
+            emailEditText.setText(FileHandler.readData("email", this))
             passwordEditText.setText(FileHandler.readData("password", this))
             rememberMeCheckBox.isChecked = true
         } else {
-            usernameEditText.setText("")
+            emailEditText.setText("")
             passwordEditText.setText("")
             rememberMeCheckBox.isChecked = false
         }
 
         rememberMeCheckBox.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked) {
-                FileHandler.writeData("username", "", this)
+                FileHandler.writeData("email", "", this)
                 FileHandler.writeData("password", "", this)
                 FileHandler.writeData("rememberMe", "false", this)
             }
@@ -62,12 +62,12 @@ class LoginActivity : AppCompatActivity() {
 
         // Setup Login button click listener
         loginButton.setOnClickListener {
-            val username = usernameEditText.text.toString().trim()
+            val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
-            if (validateCredentials(username, password)) {
+            if (validateCredentials(email, password)) {
                 viewModel.login(
-                    Auth(username, password),
+                    Auth(email, password),
                     object: CoroutinesErrorHandler {
                         override fun onError(message: String) {
                             Toast.makeText(this@LoginActivity, "Error! $message", Toast.LENGTH_SHORT).show()
@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if (rememberMeCheckBox.isChecked) {
-                FileHandler.writeData("username", username, this)
+                FileHandler.writeData("email", email, this)
                 FileHandler.writeData("password", password, this)
                 FileHandler.writeData("rememberMe", "true", this)
             }
@@ -110,5 +110,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateCredentials(username: String, password: String): Boolean = username.isNotEmpty() && password.isNotEmpty()
+    private fun validateCredentials(email: String, password: String): Boolean = email.isNotEmpty() && password.isNotEmpty()
 }
