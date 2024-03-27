@@ -23,4 +23,7 @@ interface ApiService {
 
     @GET("user/info")
     suspend fun getUserInfo(): Response<UserInfoResponse>
+
+    @GET("search/{query}")
+    suspend fun searchDestinations(@Path("query") query: String): Response<List<DestinationResult>>
 }

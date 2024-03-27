@@ -26,4 +26,8 @@ class MainRepository @Inject constructor(
     fun getDestination(id: Int) = apiRequestFlow {
         mainApiService.getDestination(id)
     }
+
+    fun searchDestinations(query: String) = apiRequestFlow {
+        mainApiService.searchDestinations(query)
+    }
 }

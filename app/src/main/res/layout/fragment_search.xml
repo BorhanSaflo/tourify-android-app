@@ -8,30 +8,50 @@
     tools:context=".ui.search.SearchFragment">
 
     <TextView
-        android:id="@+id/text_search"
-        android:layout_width="match_parent"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Search"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:queryHint="Search"
+        android:layout_marginTop="16dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="#2C2C2C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_search" />
+        app:searchHintIcon="@drawable/search_white"
+        app:searchIcon="@drawable/search_white"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ScrollView
+        android:id="@+id/results_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintTop_toBottomOf="@+id/search_view"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <LinearLayout
+        android:id="@+id/results_linear_layout"
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" />
+</ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
