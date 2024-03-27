@@ -22,9 +22,9 @@
                 android:id="@+id/destination_location_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/purple_200"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Error, Error" />
@@ -77,14 +77,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@android:drawable/stat_sys_upload" />
+                    android:button="@drawable/thumbs_up" />
 
                 <RadioButton
                     android:id="@+id/destination_dislike_radio_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@android:drawable/stat_sys_download" />
+                    android:button="@drawable/thumbs_down" />
 
             </RadioGroup>
 

@@ -15,7 +15,7 @@
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -32,6 +32,15 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:text="Example User"
+            android:textColor="@color/purple_200" />
+
+        <TextView
+            android:id="@+id/review_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="TextView"
             android:textColor="@color/purple_200" />
 
     </LinearLayout>

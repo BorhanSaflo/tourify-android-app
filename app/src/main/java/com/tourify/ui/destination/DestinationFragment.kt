@@ -91,10 +91,12 @@ class DestinationFragment : Fragment() {
             val imageView = placeLayout.findViewById<ImageView>(R.id.review_image)
             val nameView = placeLayout.findViewById<TextView>(R.id.review_name)
             val bodyView = placeLayout.findViewById<TextView>(R.id.review_body)
+            val timestampView = placeLayout.findViewById<TextView>(R.id.review_timestamp)
 
             imageView.setImageResource(R.drawable.user)
             nameView.text = review.user.name
             bodyView.text = review.comment
+            timestampView.text = "Time -> " + review.timestamp
 
             layout.addView(placeLayout)
         }
