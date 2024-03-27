@@ -1,7 +1,6 @@
 package com.tourify.ui.destination
 
 import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -46,7 +44,7 @@ class DestinationFragment : Fragment() {
                 is ApiResponse.Success -> {
                     val destination = it.data
                     destinationLocation.text = destination.name + ", " + destination.country
-                    destinationDescription.text = "Description should be here -> " + destination.description
+                    destinationDescription.text = destination.description
                     likeView.text = destination.likes.toString()
                     dislikeView.text = destination.dislikes.toString()
                     viewsView.text = destination.views.toString()

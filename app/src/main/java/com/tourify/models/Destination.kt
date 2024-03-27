@@ -4,7 +4,7 @@ data class Destination(
     val id: Int,
     val name: String,
     val country: String,
-    val description: String?,
+    val description: String,
     val googlePlaceId: String,
     val images: List<String>,
     val likes: Int,
