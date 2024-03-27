@@ -12,15 +12,10 @@ import com.tourify.R
 import com.tourify.databinding.FragmentProfileBinding
 import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.CoroutinesErrorHandler
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
-
-    private var _binding: FragmentProfileBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
     private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
@@ -32,8 +27,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val emailTextView: TextView = binding.userInfoEmail
-        val usernameTextView: TextView = binding.userInfoUsername
+        val emailTextView: TextView = view.findViewById(R.id.user_info_email)
+        val usernameTextView: TextView = view.findViewById(R.id.user_info_username)
 
         viewModel.userInfoResponse.observe(viewLifecycleOwner) {
             val profileInfo = when (it) {
@@ -42,8 +37,8 @@ class ProfileFragment : Fragment() {
             }
 
             if (profileInfo != null) {
-                emailTextView.text = profileInfo.email
-                usernameTextView.text = profileInfo.name
+                emailTextView.text = "Email:    " + profileInfo.email
+                usernameTextView.text = "Name:    " + profileInfo.name
             }
         }
 
@@ -52,10 +47,5 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
