@@ -7,6 +7,10 @@ import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.BaseViewModel
 import com.tourify.viewmodels.CoroutinesErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,5 +26,32 @@ class DestinationViewModel @Inject constructor(
         coroutinesErrorHandler,
     ) {
         mainRepository.getDestination(id)
+    }
+
+    fun getRelativeTime(timeStamp: String): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+        sdf.timeZone = TimeZone.getTimeZone("UTC")
+        val parsedDate = sdf.parse(timeStamp) ?: return "Invalid date"
+
+        val now = Calendar.getInstance().time
+        val diff = now.time - parsedDate.time
+
+        val seconds = diff / 1000
+        val minutes = seconds / 60
+        val hours = minutes / 60
+        val days = hours / 24
+        val weeks = days / 7
+        val months = days / 30 // Approximation
+        val years = days / 365 // Approximation
+
+        return when {
+            years > 0 -> "${years}yr ago"
+            months > 0 -> "${months}mo ago"
+            weeks > 0 -> "${weeks}w ago"
+            days > 0 -> "${days}d ago"
+            hours > 0 -> "${hours}h ago"
+            minutes > 0 -> "${minutes}m ago"
+            else -> "${seconds}s ago"
+        }
     }
 }
