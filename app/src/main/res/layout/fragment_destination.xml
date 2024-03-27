@@ -18,6 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/destination_location_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/purple_200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Error, Error" />
+
             <ProgressBar
                 android:id="@+id/image_progress_bar"
                 style="?android:attr/progressBarStyle"
@@ -29,22 +40,11 @@
                 app:layout_constraintStart_toStartOf="@+id/destination_view_pager"
                 app:layout_constraintTop_toTopOf="@+id/destination_view_pager" />
 
-            <TextView
-                android:id="@+id/destination_location_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Error, Error" />
-
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/destination_view_pager"
                 android:layout_width="0dp"
                 android:layout_height="256dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/destination_location_text_view">
@@ -57,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
-                android:text="Bookmark"
+                android:textOff="Save"
+                android:textOn="Saved"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/destination_view_pager" />
 
@@ -73,18 +74,61 @@
 
                 <RadioButton
                     android:id="@+id/destination_like_radio_button"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@android:drawable/ic_input_add" />
+                    android:button="@android:drawable/stat_sys_upload" />
 
                 <RadioButton
                     android:id="@+id/destination_dislike_radio_button"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@android:drawable/ic_delete" />
+                    android:button="@android:drawable/stat_sys_download" />
+
             </RadioGroup>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="@+id/destination_rate_radio_group"
+                app:layout_constraintStart_toEndOf="@+id/destination_rate_radio_group"
+                app:layout_constraintTop_toTopOf="@+id/destination_rate_radio_group"
+                app:srcCompat="@android:drawable/ic_menu_view" />
+
+            <TextView
+                android:id="@+id/like_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/purple_200"
+                app:layout_constraintEnd_toEndOf="@+id/destination_rate_radio_group"
+                app:layout_constraintHorizontal_bias="0.09"
+                app:layout_constraintStart_toStartOf="@+id/destination_rate_radio_group"
+                app:layout_constraintTop_toBottomOf="@+id/destination_rate_radio_group" />
+
+            <TextView
+                android:id="@+id/dislike_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/purple_200"
+                app:layout_constraintEnd_toEndOf="@+id/destination_rate_radio_group"
+                app:layout_constraintHorizontal_bias="0.63"
+                app:layout_constraintStart_toStartOf="@+id/destination_rate_radio_group"
+                app:layout_constraintTop_toBottomOf="@+id/destination_rate_radio_group" />
+
+            <TextView
+                android:id="@+id/view_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/purple_200"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/destination_rate_radio_group"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <TextView
                 android:id="@+id/destination_description_text_view"
@@ -99,6 +143,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/destination_view_pager"
                 tools:text="Error" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/reviews_title_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/destination_description_text_view" />
+
+            <TextView
+                android:id="@+id/reviews_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Reviews"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/purple_200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/destination_description_text_view" />
+
+            <LinearLayout
+                android:id="@+id/review_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reviews_title_text_view"></LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

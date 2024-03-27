@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.tourify.ImageAdapter
 import com.tourify.ImageFetcher
 import com.tourify.R
+import com.tourify.models.Review
 import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +41,8 @@ class DestinationFragment : Fragment() {
             when(it) {
                 is ApiResponse.Success -> {
                     val destination = it.data
-                    destinationDescription.text = destination.description
-                    destinationLocation.text = destination.name
+                    destinationLocation.text = destination.name + ", " + destination.country
+                    destinationDescription.text = "Description should be here -> " + destination.description
 
                     fun displayImages(urls: List<String>){
                         val imageProgressBar = view.findViewById<View>(R.id.image_progress_bar)
@@ -48,8 +51,6 @@ class DestinationFragment : Fragment() {
                         val images = mutableListOf<Bitmap>()
                         val imageFetchListener = ImageFetcher.ImageFetchListener { bitmap ->
                             if (bitmap == null) {
-                                // The following toast will popup for *every* image that fails to load
-                                // TODO: Show only one toast even when multiple images fail to load
                                 Toast.makeText(requireContext(), "Failed to load images", Toast.LENGTH_SHORT).show()
                                 return@ImageFetchListener
                             }
@@ -67,6 +68,13 @@ class DestinationFragment : Fragment() {
                 }
                 else -> Toast.makeText(requireContext(), "Failed to load destination", Toast.LENGTH_SHORT).show()
             }
+
+            // Reviews
+            val reviewLayout: ViewGroup = view.findViewById(R.id.review_layout)
+            when(it) {
+                is ApiResponse.Success -> addReview(it.data.reviewsQuery, reviewLayout)
+                else -> {}
+            }
         }
 
         viewModel.getDestination(id, object: CoroutinesErrorHandler {
@@ -74,5 +82,21 @@ class DestinationFragment : Fragment() {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun addReview(reviews: List<Review>, layout: ViewGroup) {
+        layout.removeAllViews()
+        for (review in reviews) {
+            val placeLayout = LayoutInflater.from(context).inflate(R.layout.item_review, layout, false)
+            val imageView = placeLayout.findViewById<ImageView>(R.id.review_image)
+            val nameView = placeLayout.findViewById<TextView>(R.id.review_name)
+            val bodyView = placeLayout.findViewById<TextView>(R.id.review_body)
+
+            imageView.setImageResource(R.drawable.user)
+            nameView.text = review.user.name
+            bodyView.text = review.comment
+
+            layout.addView(placeLayout)
+        }
     }
 }
