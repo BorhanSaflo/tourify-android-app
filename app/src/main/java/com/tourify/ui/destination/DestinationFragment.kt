@@ -37,6 +37,9 @@ class DestinationFragment : Fragment() {
         val id = requireArguments().getInt("id")
         val destinationDescription: TextView = view.findViewById(R.id.destination_description_text_view)
         val destinationLocation = view.findViewById<TextView>(R.id.destination_location_text_view)
+        val likeView = view.findViewById<TextView>(R.id.like_text_view)
+        val dislikeView = view.findViewById<TextView>(R.id.dislike_text_view)
+        val viewsView = view.findViewById<TextView>(R.id.view_text_view)
 
         viewModel.destinationResponse.observe(viewLifecycleOwner) {
             when(it) {
@@ -44,6 +47,9 @@ class DestinationFragment : Fragment() {
                     val destination = it.data
                     destinationLocation.text = destination.name + ", " + destination.country
                     destinationDescription.text = "Description should be here -> " + destination.description
+                    likeView.text = destination.likes.toString()
+                    dislikeView.text = destination.dislikes.toString()
+                    viewsView.text = destination.views.toString()
 
                     fun displayImages(urls: List<String>){
                         val imageProgressBar = view.findViewById<View>(R.id.image_progress_bar)
