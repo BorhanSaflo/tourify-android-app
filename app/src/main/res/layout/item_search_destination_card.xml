@@ -16,23 +16,23 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_margin="16dp"
+            android:layout_margin="34dp"
             android:indeterminate="true"
             android:visibility="gone" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_destination"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:cardCornerRadius="5dp"
-            android:layout_toEndOf="@id/progress_bar_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp">
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/progress_bar_destination"
+            app:cardCornerRadius="5dp">
 
             <ImageView
                 android:id="@+id/image_view_destination"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background" />
         </androidx.cardview.widget.CardView>

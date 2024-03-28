@@ -73,9 +73,9 @@ class SearchFragment : Fragment() {
                     activity?.runOnUiThread {
                         if (bitmap != null) {
                             imageView.setImageBitmap(bitmap)
+                            loadingIcon.visibility = View.GONE
                             imageView.visibility = View.VISIBLE
                         }
-                        loadingIcon.visibility = View.GONE
                     }
                 }
                 setupCardClickListener(resultLayout, destination.id.toInt())
