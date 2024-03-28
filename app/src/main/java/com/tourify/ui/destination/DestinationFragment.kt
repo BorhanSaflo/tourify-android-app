@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -89,32 +90,59 @@ class DestinationFragment : Fragment() {
             }
         })
 
-        var hasVoted = false;
-        val ratingButtons = view.findViewById<RadioGroup>(R.id.destination_rate_radio_group)
-        ratingButtons.setOnCheckedChangeListener { _, checkedId ->
-            val vote = when(checkedId) {
-                R.id.destination_like_radio_button -> true
-                R.id.destination_dislike_radio_button -> false
-                else -> null
-            }
+        var currentVote = 0
+        var oldVote = 0
+        val likeButton = view.findViewById<ImageView>(R.id.like_image_view)
+        val dislikeButton = view.findViewById<ImageView>(R.id.dislike_image_view)
 
-            if (vote != null) {
-                updateLikeRating(vote, hasVoted)
-                hasVoted = true;
+        likeButton.setOnClickListener {
+            if (currentVote == 1) {
+                currentVote = 0
+                updateLikeRating(currentVote, oldVote)
+            } else {
+                currentVote = 1
+                updateLikeRating(currentVote, oldVote)
             }
+            oldVote = currentVote
+        }
+
+        dislikeButton.setOnClickListener {
+            if (currentVote == 2) {
+                currentVote = 0
+                updateLikeRating(currentVote, oldVote)
+            } else {
+                currentVote = 2
+                updateLikeRating(currentVote, oldVote)
+            }
+            oldVote = currentVote
         }
     }
 
-    private fun updateLikeRating(vote: Boolean, hasVoted: Boolean) {
-        val likeView = view?.findViewById<TextView>(R.id.like_text_view)
-        val dislikeView = view?.findViewById<TextView>(R.id.dislike_text_view)
+    private fun updateLikeRating(currentVote: Int, oldVote: Int) {
+        val likeImage = view?.findViewById<ImageView>(R.id.like_image_view)
+        val likeText = view?.findViewById<TextView>(R.id.like_text_view)
+        val dislikeImage = view?.findViewById<ImageView>(R.id.dislike_image_view)
+        val dislikeText = view?.findViewById<TextView>(R.id.dislike_text_view)
 
-        if(vote) {
-            likeView?.text = (likeView?.text.toString().toInt() + 1).toString()
-            if (hasVoted) dislikeView?.text = (dislikeView?.text.toString().toInt() - 1).toString()
+        if(currentVote == 1) {
+            likeText?.text = (likeText?.text.toString().toInt() + 1).toString()
+            likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up_green, null))
+            dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down, null))
+            if (oldVote == 2)
+                dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
+        } else if (currentVote == 2){
+            dislikeText?.text = (dislikeText?.text.toString().toInt() + 1).toString()
+            dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down_red, null))
+            likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up, null))
+            if (oldVote == 1)
+                likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
         } else {
-            dislikeView?.text = (dislikeView?.text.toString().toInt() + 1).toString()
-            if (hasVoted) likeView?.text = (likeView?.text.toString().toInt() - 1).toString()
+            likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up, null))
+            dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down, null))
+            if(oldVote == 1)
+                likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
+            else if(oldVote == 2)
+                dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
         }
     }
 
