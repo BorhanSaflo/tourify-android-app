@@ -35,12 +35,12 @@
                     android:id="@+id/greeting_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
                     android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:text="Explore"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textColor="@color/purple_200"
-                    android:textSize="34sp"
-                    tools:text="Explore" />
+                    android:textSize="34sp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/Question1_constraint_layout"
@@ -63,14 +63,16 @@
 
                     <TextView
                         android:id="@+id/Question1_question_text_view"
-                        android:layout_width="377dp"
+                        android:layout_width="0dp"
                         android:layout_height="85dp"
-                        android:layout_marginStart="52dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginEnd="12dp"
                         android:text="What type of climate do you prefer for your vacation?"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question1_text_view" />
 
@@ -88,20 +90,20 @@
                         android:id="@+id/Question1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="196dp"
                         android:layout_marginTop="20dp"
                         android:text="Warm"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/Question1_3"
+                        app:layout_constraintStart_toEndOf="@+id/Question1_1"
                         app:layout_constraintTop_toBottomOf="@+id/Question1_question_text_view" />
 
                     <Button
                         android:id="@+id/Question1_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="376dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginEnd="12dp"
                         android:text="Cold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question1_question_text_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -127,14 +129,16 @@
 
                     <TextView
                         android:id="@+id/Question2_question_text_view"
-                        android:layout_width="377dp"
+                        android:layout_width="0dp"
                         android:layout_height="85dp"
-                        android:layout_marginStart="52dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginEnd="12dp"
                         android:text="What type of climate do you prefer for your vacation?"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question2_text_view" />
 
@@ -152,20 +156,20 @@
                         android:id="@+id/Question2_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="196dp"
                         android:layout_marginTop="20dp"
                         android:text="Warm"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/Question2_3"
+                        app:layout_constraintStart_toEndOf="@+id/Question2_1"
                         app:layout_constraintTop_toBottomOf="@+id/Question2_question_text_view" />
 
                     <Button
                         android:id="@+id/Question2_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="376dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginEnd="12dp"
                         android:text="Cold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question2_question_text_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -191,14 +195,16 @@
 
                     <TextView
                         android:id="@+id/Question3_question_text_view"
-                        android:layout_width="377dp"
+                        android:layout_width="0dp"
                         android:layout_height="85dp"
-                        android:layout_marginStart="52dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginEnd="12dp"
                         android:text="What type of climate do you prefer for your vacation?"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question3_text_view" />
 
@@ -216,20 +222,20 @@
                         android:id="@+id/Question3_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="196dp"
                         android:layout_marginTop="20dp"
                         android:text="Warm"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/Question3_3"
+                        app:layout_constraintStart_toEndOf="@+id/Question3_1"
                         app:layout_constraintTop_toBottomOf="@+id/Question3_question_text_view" />
 
                     <Button
                         android:id="@+id/Question3_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="376dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginEnd="12dp"
                         android:text="Cold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question3_question_text_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -255,14 +261,16 @@
 
                     <TextView
                         android:id="@+id/Question4_question_text_view"
-                        android:layout_width="377dp"
+                        android:layout_width="0dp"
                         android:layout_height="85dp"
-                        android:layout_marginStart="52dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginEnd="12dp"
                         android:text="What type of climate do you prefer for your vacation?"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question4_text_view" />
 
@@ -280,20 +288,20 @@
                         android:id="@+id/Question4_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="196dp"
                         android:layout_marginTop="20dp"
                         android:text="Warm"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/Question4_3"
+                        app:layout_constraintStart_toEndOf="@+id/Question4_1"
                         app:layout_constraintTop_toBottomOf="@+id/Question4_question_text_view" />
 
                     <Button
                         android:id="@+id/Question4_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="376dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginEnd="12dp"
                         android:text="Cold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question4_question_text_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -319,14 +327,16 @@
 
                     <TextView
                         android:id="@+id/Question5_question_text_view"
-                        android:layout_width="377dp"
+                        android:layout_width="0dp"
                         android:layout_height="85dp"
-                        android:layout_marginStart="52dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginEnd="12dp"
                         android:text="What type of climate do you prefer for your vacation?"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question5_text_view" />
 
@@ -344,20 +354,20 @@
                         android:id="@+id/Question5_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="196dp"
                         android:layout_marginTop="20dp"
                         android:text="Warm"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/Question5_3"
+                        app:layout_constraintStart_toEndOf="@+id/Question5_1"
                         app:layout_constraintTop_toBottomOf="@+id/Question5_question_text_view" />
 
                     <Button
                         android:id="@+id/Question5_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="376dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginEnd="12dp"
                         android:text="Cold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Question5_question_text_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
