@@ -52,16 +52,9 @@ class QuestionView @JvmOverloads constructor(
     }
 
     private fun updateButtonBackgrounds(selectedIndex: Int) {
-        // Iterate through all buttons and update their backgrounds based on selection
+        // Iterate through all buttons and update their selected state
         optionButtons.forEachIndexed { index, button ->
-            if (index == selectedIndex) {
-                // Selected button
-                button.setBackgroundResource(R.drawable.button_selected)
-            } else {
-                // Deselected buttons
-                button.setBackgroundResource(R.drawable.button_deselected)
-            }
+            button.isSelected = index == selectedIndex
         }
     }
-
 }
