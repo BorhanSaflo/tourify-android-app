@@ -116,7 +116,7 @@
                         android:id="@+id/view_image_view"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:srcCompat="@android:drawable/ic_menu_view" />
+                        app:srcCompat="@drawable/views" />
 
                     <TextView
                         android:id="@+id/view_text_view"
