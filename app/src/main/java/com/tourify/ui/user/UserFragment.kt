@@ -35,7 +35,7 @@ class UserFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
+        val userViewModel =
             ViewModelProvider(this).get(UserViewModel::class.java)
 
         _binding = FragmentUserBinding.inflate(inflater, container, false)

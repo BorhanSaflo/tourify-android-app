@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -87,6 +88,34 @@ class DestinationFragment : Fragment() {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         })
+
+        var hasVoted = false;
+        val ratingButtons = view.findViewById<RadioGroup>(R.id.destination_rate_radio_group)
+        ratingButtons.setOnCheckedChangeListener { _, checkedId ->
+            val vote = when(checkedId) {
+                R.id.destination_like_radio_button -> true
+                R.id.destination_dislike_radio_button -> false
+                else -> null
+            }
+
+            if (vote != null) {
+                updateLikeRating(vote, hasVoted)
+                hasVoted = true;
+            }
+        }
+    }
+
+    private fun updateLikeRating(vote: Boolean, hasVoted: Boolean) {
+        val likeView = view?.findViewById<TextView>(R.id.like_text_view)
+        val dislikeView = view?.findViewById<TextView>(R.id.dislike_text_view)
+
+        if(vote) {
+            likeView?.text = (likeView?.text.toString().toInt() + 1).toString()
+            if (hasVoted) dislikeView?.text = (dislikeView?.text.toString().toInt() - 1).toString()
+        } else {
+            dislikeView?.text = (dislikeView?.text.toString().toInt() + 1).toString()
+            if (hasVoted) likeView?.text = (likeView?.text.toString().toInt() - 1).toString()
+        }
     }
 
     private fun addReview(reviews: List<Review>, layout: ViewGroup) {
