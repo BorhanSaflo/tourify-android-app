@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress_bar_destination"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_destination"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="5dp"
+            android:layout_toEndOf="@id/progress_bar_destination"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp">
+
+            <ImageView
+                android:id="@+id/image_view_destination"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/text_view_destination_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/card_view_destination"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/purple_200"
+            tools:text="City"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/text_view_destination_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/text_view_destination_name"
+            android:layout_alignBottom="@id/text_view_destination_name"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/purple_200"
+            tools:text="Country" />
+
+        <TextView
+            android:id="@+id/text_view_destination_description"
+            android:layout_width="269dp"
+            android:layout_height="61dp"
+            android:layout_below="@id/text_view_destination_country"
+            android:layout_alignStart="@id/text_view_destination_name"
+            android:layout_marginTop="8dp"
+            android:text="A brief description of the destination."
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>
