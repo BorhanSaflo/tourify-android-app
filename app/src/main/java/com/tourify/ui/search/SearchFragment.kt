@@ -3,6 +3,7 @@ package com.tourify.ui.search
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -39,6 +41,12 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val searchText: EditText = view.findViewById(androidx.appcompat.R.id.search_src_text)
+        searchText.setTextColor(Color.WHITE)
+        searchText.setHintTextColor(Color.WHITE)
+        val searchCloseButton: ImageView = view.findViewById(androidx.appcompat.R.id.search_close_btn)
+        searchCloseButton.setColorFilter(Color.WHITE)
 
         @SuppressLint("MissingInflatedId")
         fun updateSearchResults(results: List<DestinationResult>) {
