@@ -57,24 +57,28 @@ class SearchFragment : Fragment() {
                 val imageView = resultLayout.findViewById<ImageView>(R.id.image_view_destination)
                 val cityView = resultLayout.findViewById<TextView>(R.id.text_view_destination_name)
                 val countryView = resultLayout.findViewById<TextView>(R.id.text_view_destination_country)
-                val loadingIcon = resultLayout.findViewById<ProgressBar>(R.id.progress_bar_destination)
                 val descriptionView = resultLayout.findViewById<TextView>(R.id.text_view_destination_description)
+                val loadingIcon = resultLayout.findViewById<ProgressBar>(R.id.progress_bar_destination)
 
-                descriptionView.text = destination.description
+                // Setting the text views with destination data
                 cityView.text = destination.name
                 countryView.text = buildString {
-                    append(",  ")
+                    append(", ")
                     append(destination.country)
                 }
+                descriptionView.text = destination.description
                 loadingIcon.visibility = View.VISIBLE
                 imageView.visibility = View.GONE
-
                 getImage(destination.thumbnail) { bitmap ->
-                    imageView.setImageBitmap(bitmap)
-                    setupImageClickListener(imageView, destination.id.toInt())
-                    loadingIcon.visibility = View.GONE
-                    imageView.visibility = View.VISIBLE
+                    activity?.runOnUiThread {
+                        if (bitmap != null) {
+                            imageView.setImageBitmap(bitmap)
+                            imageView.visibility = View.VISIBLE
+                        }
+                        loadingIcon.visibility = View.GONE
+                    }
                 }
+                setupCardClickListener(resultLayout, destination.id.toInt())
                 resultsLayout.addView(resultLayout)
             }
         }
@@ -140,14 +144,14 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setupImageClickListener(imageView: ImageView, id : Int) {
-        imageView.setOnClickListener {
-            val args = Bundle()
-            args.putInt("id", id)
-
-            val fragment = DestinationFragment()
-            fragment.arguments = args
-
+    private fun setupCardClickListener(cardView: View, id: Int) {
+        cardView.setOnClickListener {
+            val args = Bundle().apply {
+                putInt("id", id)
+            }
+            val fragment = DestinationFragment().apply {
+                arguments = args
+            }
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.search_frame_layout, fragment)
                 .addToBackStack(null)
@@ -156,6 +160,7 @@ class SearchFragment : Fragment() {
             hideKeyboard()
         }
     }
+
 
     private fun hideKeyboard() {
         val inputMethodManager = view?.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
