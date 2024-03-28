@@ -1,5 +1,6 @@
 package com.tourify.ui.search
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -17,6 +19,7 @@ import androidx.fragment.app.viewModels
 import com.tourify.ImageFetcher
 import com.tourify.R
 import com.tourify.models.DestinationResult
+import com.tourify.ui.destination.DestinationFragment
 import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,6 +54,7 @@ class SearchFragment : Fragment() {
 
                 getImage(destination.thumbnail) { bitmap ->
                     imageView.setImageBitmap(bitmap)
+                    setupImageClickListener(imageView, destination.id.toInt())
                     loadingIcon.visibility = View.GONE
                     imageView.visibility = View.VISIBLE
                 }
@@ -113,5 +117,27 @@ class SearchFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setupImageClickListener(imageView: ImageView, id : Int) {
+        imageView.setOnClickListener {
+            val args = Bundle()
+            args.putInt("id", id)
+
+            val fragment = DestinationFragment()
+            fragment.arguments = args
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.search_frame_layout, fragment)
+                .addToBackStack(null)
+                .commit()
+
+            hideKeyboard()
+        }
+    }
+
+    private fun hideKeyboard() {
+        val inputMethodManager = view?.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 }
