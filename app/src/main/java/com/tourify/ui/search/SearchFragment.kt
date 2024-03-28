@@ -43,20 +43,18 @@ class SearchFragment : Fragment() {
             val resultsLayout: ViewGroup = view.findViewById(R.id.results_linear_layout)
             resultsLayout.removeAllViews()
             results.forEach { destination ->
-                val resultLayout = LayoutInflater.from(context).inflate(R.layout.item_search_result, resultsLayout, false)
+                val resultLayout = LayoutInflater.from(context).inflate(R.layout.item_search_destination_card, resultsLayout, false)
                 val imageView = resultLayout.findViewById<ImageView>(R.id.image_view_destination)
                 val cityView = resultLayout.findViewById<TextView>(R.id.text_view_destination_name)
                 val countryView = resultLayout.findViewById<TextView>(R.id.text_view_destination_country)
-                val thumbsUpView = resultLayout.findViewById<TextView>(R.id.text_view_thumbs_up)
-                val thumbsDownView = resultLayout.findViewById<TextView>(R.id.text_view_thumbs_down)
+                val descView = resultLayout.findViewById<TextView>(R.id.text_view_destination_description)
                 val loadingIcon = resultLayout.findViewById<ProgressBar>(R.id.progress_bar_destination)
 
                 cityView.text = destination.name
                 countryView.text = destination.country
-                thumbsUpView.text = destination.likes.toString()
-                thumbsDownView.text = destination.likes.toString()
-                loadingIcon.visibility = View.VISIBLE
+                descView.text = "Placeholder Description" // destination.description
                 imageView.visibility = View.GONE
+                loadingIcon.visibility = View.VISIBLE
 
                 getImage(destination.thumbnail) { bitmap ->
                     imageView.setImageBitmap(bitmap)
