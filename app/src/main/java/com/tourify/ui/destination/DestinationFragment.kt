@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,8 +28,22 @@ class DestinationFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_destination, container, false)
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_destination, container, false)
+        // Set up the Toolbar to act as the ActionBar
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        (activity as? AppCompatActivity)?.let { activity ->
+            activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            activity.supportActionBar?.setDisplayShowHomeEnabled(true)
+            // Set a click listener on the navigation icon (back button)
+            toolbar.setNavigationOnClickListener {
+                activity.onBackPressed()
+            }
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
