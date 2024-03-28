@@ -1,5 +1,6 @@
 package com.tourify.ui.search
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -39,6 +40,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        @SuppressLint("MissingInflatedId")
         fun updateSearchResults(results: List<DestinationResult>) {
             val resultsLayout: ViewGroup = view.findViewById(R.id.results_linear_layout)
             resultsLayout.removeAllViews()
@@ -47,14 +49,17 @@ class SearchFragment : Fragment() {
                 val imageView = resultLayout.findViewById<ImageView>(R.id.image_view_destination)
                 val cityView = resultLayout.findViewById<TextView>(R.id.text_view_destination_name)
                 val countryView = resultLayout.findViewById<TextView>(R.id.text_view_destination_country)
-                val descView = resultLayout.findViewById<TextView>(R.id.text_view_destination_description)
                 val loadingIcon = resultLayout.findViewById<ProgressBar>(R.id.progress_bar_destination)
+                val descriptionView = resultLayout.findViewById<TextView>(R.id.text_view_destination_description)
 
+                descriptionView.text = destination.description
                 cityView.text = destination.name
-                countryView.text = destination.country
-                descView.text = "Placeholder Description" // destination.description
-                imageView.visibility = View.GONE
+                countryView.text = buildString {
+                    append(",  ")
+                    append(destination.country)
+                }
                 loadingIcon.visibility = View.VISIBLE
+                imageView.visibility = View.GONE
 
                 getImage(destination.thumbnail) { bitmap ->
                     imageView.setImageBitmap(bitmap)
@@ -62,7 +67,6 @@ class SearchFragment : Fragment() {
                     loadingIcon.visibility = View.GONE
                     imageView.visibility = View.VISIBLE
                 }
-
                 resultsLayout.addView(resultLayout)
             }
         }
@@ -88,6 +92,7 @@ class SearchFragment : Fragment() {
         }
 
         val searchEditText: SearchView = view.findViewById(R.id.search_view)
+        searchEditText.setIconifiedByDefault(false)
         searchEditText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {

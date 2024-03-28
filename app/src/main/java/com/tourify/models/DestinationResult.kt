@@ -6,5 +6,6 @@ data class DestinationResult(
     val country: String,
     val views: Int,
     val likes: Int,
-    val thumbnail: String
+    val thumbnail: String,
+    val description: String,
 )

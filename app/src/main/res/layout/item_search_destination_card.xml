@@ -54,10 +54,10 @@
             android:id="@+id/text_view_destination_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/text_view_destination_name"
-            android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/text_view_destination_name"
-            android:textColor="@color/white"
+            android:layout_alignBottom="@id/text_view_destination_name"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/purple_200"
             tools:text="Country" />
 
         <TextView
