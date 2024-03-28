@@ -72,6 +72,10 @@ class SearchFragment : Fragment() {
         }
 
         fun triggerSearch(query: String) {
+            if (query.isEmpty()) {
+                return
+            }
+
             viewModel.searchDestinations(query, object : CoroutinesErrorHandler {
                 override fun onError(message: String) {
                     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
