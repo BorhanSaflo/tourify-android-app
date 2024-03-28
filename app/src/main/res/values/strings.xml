@@ -5,4 +5,8 @@
     <string name="title_explore">Explore</string>
     <string name="title_you">You</string>
     <string name="destination_image">Destination</string>
+    <string name="question">Question</string>
+    <string name="option_1">Option 1</string>
+    <string name="option_2">Option 2</string>
+    <string name="option_3">Option 3</string>
 </resources>

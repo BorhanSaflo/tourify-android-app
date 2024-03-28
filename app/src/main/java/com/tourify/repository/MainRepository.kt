@@ -30,4 +30,8 @@ class MainRepository @Inject constructor(
     fun searchDestinations(query: String) = apiRequestFlow {
         mainApiService.searchDestinations(query)
     }
+
+    fun exploreDestinations(query: String) = apiRequestFlow {
+        mainApiService.exploreDestinations(query)
+    }
 }

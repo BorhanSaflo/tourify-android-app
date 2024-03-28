@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @GET("destinations/trending")
@@ -26,4 +27,7 @@ interface ApiService {
 
     @GET("search/{query}")
     suspend fun searchDestinations(@Path("query") query: String): Response<List<DestinationResult>>
+
+    @GET("explore/")
+    suspend fun exploreDestinations(@Query("tags") query: String): Response<List<DestinationResult>>
 }
