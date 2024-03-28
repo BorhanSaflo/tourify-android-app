@@ -41,8 +41,10 @@ class LoginActivity : AppCompatActivity() {
         signupTextView = findViewById(R.id.signup_text_view)
 
         // Load saved credentials if "Remember Me" is checked
-        Log.w("Remember", FileHandler.readData("rememberMe", this))
-        if (FileHandler.readData("rememberMe", this) == "true") {
+    val rememberMeData: String? = FileHandler.readData("rememberMe", this)
+    if (rememberMeData != null) {
+        Log.w("Remember", rememberMeData)
+        if (rememberMeData == "true") {
             emailEditText.setText(FileHandler.readData("email", this))
             passwordEditText.setText(FileHandler.readData("password", this))
             rememberMeCheckBox.isChecked = true
@@ -51,14 +53,17 @@ class LoginActivity : AppCompatActivity() {
             passwordEditText.setText("")
             rememberMeCheckBox.isChecked = false
         }
+    } else {
+        Log.w("Remember", "Data is null")
+    }
 
-        rememberMeCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) {
-                FileHandler.writeData("email", "", this)
-                FileHandler.writeData("password", "", this)
-                FileHandler.writeData("rememberMe", "false", this)
-            }
+    rememberMeCheckBox.setOnCheckedChangeListener { _, isChecked ->
+        if (!isChecked) {
+            FileHandler.writeData("email", "", this)
+            FileHandler.writeData("password", "", this)
+            FileHandler.writeData("rememberMe", "false", this)
         }
+    }
 
         // Setup Login button click listener
         loginButton.setOnClickListener {
