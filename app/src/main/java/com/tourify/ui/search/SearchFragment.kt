@@ -43,12 +43,18 @@ class SearchFragment : Fragment() {
             val resultsLayout: ViewGroup = view.findViewById(R.id.results_linear_layout)
             resultsLayout.removeAllViews()
             results.forEach { destination ->
-                val resultLayout = LayoutInflater.from(context).inflate(R.layout.item_destination_card, resultsLayout, false)
+                val resultLayout = LayoutInflater.from(context).inflate(R.layout.item_search_result, resultsLayout, false)
                 val imageView = resultLayout.findViewById<ImageView>(R.id.image_view_destination)
-                val textView = resultLayout.findViewById<TextView>(R.id.text_view_destination_name)
+                val cityView = resultLayout.findViewById<TextView>(R.id.text_view_destination_name)
+                val countryView = resultLayout.findViewById<TextView>(R.id.text_view_destination_country)
+                val thumbsUpView = resultLayout.findViewById<TextView>(R.id.text_view_thumbs_up)
+                val thumbsDownView = resultLayout.findViewById<TextView>(R.id.text_view_thumbs_down)
                 val loadingIcon = resultLayout.findViewById<ProgressBar>(R.id.progress_bar_destination)
 
-                textView.text = destination.name
+                cityView.text = destination.name
+                countryView.text = destination.country
+                thumbsUpView.text = destination.likes.toString()
+                thumbsDownView.text = destination.likes.toString()
                 loadingIcon.visibility = View.VISIBLE
                 imageView.visibility = View.GONE
 
