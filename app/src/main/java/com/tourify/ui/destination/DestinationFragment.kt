@@ -73,7 +73,7 @@ class DestinationFragment : Fragment() {
 
                     displayImages(destination.images)
                 }
-                else -> Toast.makeText(requireContext(), "Failed to load destination", Toast.LENGTH_SHORT).show()
+                else -> {}
             }
 
             // Reviews
