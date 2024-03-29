@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +29,8 @@
                 android:text="Sign Up"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="34sp"
+                android:textColor="@color/purple_200"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,11 +40,14 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="64dp"
+                android:backgroundTint="@color/purple_200"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
@@ -52,9 +57,12 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
+                android:backgroundTint="@color/purple_200"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="@+id/signup_username_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/signup_username_edit_text"
                 app:layout_constraintTop_toBottomOf="@+id/signup_username_edit_text" />
@@ -64,9 +72,12 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
+                android:backgroundTint="@color/purple_200"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="@+id/signup_username_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/signup_username_edit_text"
                 app:layout_constraintTop_toBottomOf="@+id/signup_email_edit_text" />
@@ -89,9 +100,9 @@
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="#FFFFFF"
+        android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_arrow" />
+        app:srcCompat="@drawable/back_arrow_white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
