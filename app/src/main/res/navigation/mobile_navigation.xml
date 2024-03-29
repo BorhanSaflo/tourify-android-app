@@ -21,7 +21,17 @@
         android:id="@+id/navigation_explore"
         android:name="com.tourify.ui.explore.ExploreFragment"
         android:label="@string/title_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_navigation_explore_to_navigation_explore_results"
+            app:destination="@id/navigation_explore_results" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_explore_results"
+        android:name="com.tourify.ui.explore.ExploreResultsFragment"
+        android:label="Explore Results"
+        tools:layout="@layout/fragment_explore_results" />
 
     <fragment
         android:id="@+id/navigation_you"

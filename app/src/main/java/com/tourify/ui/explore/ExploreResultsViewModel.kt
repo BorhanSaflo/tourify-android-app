@@ -15,7 +15,6 @@ class ExploreResultsViewModel : ViewModel() {
         viewModelScope.launch {
             _exploreResultsResponse.value = ApiResponse.Loading
             try {
-                // TODO: Replace this with actual API call
                 val results = listOf<String>() // Fetch results from API
                 _exploreResultsResponse.value = ApiResponse.Success(results)
             } catch (e: Exception) {
