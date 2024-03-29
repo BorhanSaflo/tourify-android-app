@@ -2,6 +2,7 @@ package com.tourify.ui.user.savedDestinations
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.tourify.models.Destination
 import com.tourify.models.DestinationResult
 import com.tourify.ui.destination.DestinationFragment
 import com.tourify.ui.home.HomeViewModel
+import com.tourify.ui.user.profile.ProfileViewModel
 import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,30 +29,38 @@ import dagger.hilt.android.AndroidEntryPoint
 class SavedDestinationsFragment : Fragment() {
     private val viewModel: SavedDestinationsViewModel by viewModels()
 
-    private var _binding: FragmentSavedDestinationsBinding? = null
-    private val binding get() = _binding!!
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_saved_destinations, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        getSavedDestinations()
+        loadSavedDestinations()
 
     }
 
-//    private fun getSavedDestinations() {
-//        viewModel.getSavedDestinations(CoroutinesErrorHandler {
-//            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-//        }).observe(viewLifecycleOwner) { response ->
-//            when (response) {
-//                is ApiResponse.Success -> {
-//                    updateUI(response.data)
-//                }
-//                is ApiResponse.Error -> {
-//                    Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+    private fun loadSavedDestinations() {
+        viewModel.savedDestinationsResponse.observe(viewLifecycleOwner) {
+            val destinations = when (it) {
+                is ApiResponse.Success -> it.data
+                else -> null
+            }
+
+            if (destinations != null) {
+                val layout = view?.findViewById<ViewGroup>(R.id.saved_destinations_grid_layout)
+                updateSection(destinations, layout!!)
+            }
+        }
+
+        viewModel.getSavedDestinations(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
     private fun updateSection(destinations: List<DestinationResult>, layout: ViewGroup) {
         layout.removeAllViews()
@@ -103,10 +113,5 @@ class SavedDestinationsFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
