@@ -2,6 +2,7 @@ package com.tourify.ui.destination
 
 import androidx.lifecycle.MutableLiveData
 import com.tourify.models.Destination
+import com.tourify.models.DestinationResult
 import com.tourify.repository.MainRepository
 import com.tourify.utils.ApiResponse
 import com.tourify.viewmodels.BaseViewModel
@@ -53,5 +54,25 @@ class DestinationViewModel @Inject constructor(
             minutes > 0 -> "${minutes}m ago"
             else -> "${seconds}s ago"
         }
+    }
+
+    private val _savedDestinationsResponse = MutableLiveData<ApiResponse<List<DestinationResult>>>()
+    val savedDestinationsResponse = _savedDestinationsResponse
+
+    fun getSavedDestinations(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _savedDestinationsResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.getSavedDestinations()
+    }
+
+    private val _saveDestinationResponse = MutableLiveData<ApiResponse<Unit>>()
+    val saveDestinationResponse = _saveDestinationResponse
+
+    fun saveDestination(id: Int, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _saveDestinationResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.saveDestination(id)
     }
 }

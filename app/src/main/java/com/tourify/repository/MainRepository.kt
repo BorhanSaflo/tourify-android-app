@@ -34,4 +34,12 @@ class MainRepository @Inject constructor(
     fun exploreDestinations(query: String) = apiRequestFlow {
         mainApiService.exploreDestinations(query)
     }
+
+    fun getSavedDestinations() = apiRequestFlow {
+        mainApiService.getSavedDestinations()
+    }
+
+    fun saveDestination(id: Int) = apiRequestFlow {
+        mainApiService.saveDestination(id)
+    }
 }

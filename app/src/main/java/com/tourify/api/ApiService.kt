@@ -6,6 +6,7 @@ import com.tourify.models.UserInfoResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -30,4 +31,10 @@ interface ApiService {
 
     @GET("explore/")
     suspend fun exploreDestinations(@Query("tags") query: String): Response<List<DestinationResult>>
+
+    @GET("user/saved")
+    suspend fun getSavedDestinations(): Response<List<DestinationResult>>
+
+    @POST("save/{id}")
+    suspend fun saveDestination(@Path("id") id: Int): Response<Unit>
 }

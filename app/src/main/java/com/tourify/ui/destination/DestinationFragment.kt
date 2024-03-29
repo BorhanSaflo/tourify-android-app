@@ -1,6 +1,8 @@
 package com.tourify.ui.destination
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +57,7 @@ class DestinationFragment : Fragment() {
         val likeView = view.findViewById<TextView>(R.id.like_text_view)
         val dislikeView = view.findViewById<TextView>(R.id.dislike_text_view)
         val viewsView = view.findViewById<TextView>(R.id.view_text_view)
+        val savedView = view.findViewById<ImageView>(R.id.save_button)
 
         viewModel.destinationResponse.observe(viewLifecycleOwner) {
             when(it) {
@@ -131,6 +134,34 @@ class DestinationFragment : Fragment() {
             }
             oldVote = currentVote
         }
+
+        var isSaved = false
+        viewModel.savedDestinationsResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Success -> {
+                    val savedDestinations = it.data
+                    for (destination in savedDestinations) {
+                        if (destination.id.toInt() == id) {
+                            updateBookmark(true)
+                            isSaved = true
+                            break
+                        }
+                    }
+                }
+                else -> {}
+            }
+        }
+
+        savedView.setOnClickListener {
+            isSaved = !isSaved
+            updateBookmark(isSaved)
+
+            viewModel.saveDestination(id, object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     private fun updateLikeRating(currentVote: Int, oldVote: Int) {
@@ -138,27 +169,38 @@ class DestinationFragment : Fragment() {
         val likeText = view?.findViewById<TextView>(R.id.like_text_view)
         val dislikeImage = view?.findViewById<ImageView>(R.id.dislike_image_view)
         val dislikeText = view?.findViewById<TextView>(R.id.dislike_text_view)
+        val newLikeImage: Int
+        val newDislikeImage: Int
 
         if(currentVote == 1) {
             likeText?.text = (likeText?.text.toString().toInt() + 1).toString()
-            likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up_green, null))
-            dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down, null))
+            newLikeImage = R.drawable.thumbs_up_green
+            newDislikeImage = R.drawable.thumbs_down
             if (oldVote == 2)
                 dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
         } else if (currentVote == 2){
             dislikeText?.text = (dislikeText?.text.toString().toInt() + 1).toString()
-            dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down_red, null))
-            likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up, null))
+            newLikeImage = R.drawable.thumbs_up
+            newDislikeImage = R.drawable.thumbs_down_red
             if (oldVote == 1)
                 likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
         } else {
-            likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up, null))
-            dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down, null))
+            newLikeImage = R.drawable.thumbs_up
+            newDislikeImage = R.drawable.thumbs_down
             if(oldVote == 1)
                 likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
             else if(oldVote == 2)
                 dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
         }
+
+        likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, newLikeImage, null))
+        dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, newDislikeImage, null))
+    }
+
+    private fun updateBookmark(isSaved: Boolean) {
+        val savedView = view?.findViewById<ImageView>(R.id.save_button)
+        val newImage = if (isSaved) R.drawable.bookmark_checked else R.drawable.bookmark_unchecked
+        savedView?.setImageDrawable(ResourcesCompat.getDrawable(resources, newImage, null))
     }
 
     private fun addReview(reviews: List<Review>, layout: ViewGroup) {
