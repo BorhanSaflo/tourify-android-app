@@ -1,10 +1,7 @@
 package com.tourify.ui.destination
 
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,14 +30,13 @@ class DestinationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_destination, container, false)
-        // Set up the Toolbar to act as the ActionBar
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+
         (activity as? AppCompatActivity)?.let { activity ->
             activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
             activity.supportActionBar?.setDisplayShowHomeEnabled(true)
-            // Set a click listener on the navigation icon (back button)
+
             toolbar.setNavigationOnClickListener {
                 activity.onBackPressed()
             }
