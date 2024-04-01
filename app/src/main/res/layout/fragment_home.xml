@@ -44,8 +44,7 @@
                     android:id="@+id/trending_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_marginTop="32dp"
-                    android:background="#272727">
+                    android:layout_marginTop="32dp">
 
                     <TextView
                         android:id="@+id/trending_text_view"
@@ -64,7 +63,6 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="32dp"
-                        android:background="#272727"
                         android:foregroundTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -84,8 +82,7 @@
                     android:id="@+id/most_liked_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_marginTop="32dp"
-                    android:background="#272727">
+                    android:layout_marginTop="32dp">
 
                     <TextView
                         android:id="@+id/most_liked_text_view"
@@ -104,7 +101,6 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="32dp"
-                        android:background="#272727"
                         android:foregroundTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -124,8 +120,7 @@
                     android:id="@+id/most_viewed_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_marginTop="32dp"
-                    android:background="#272727">
+                    android:layout_marginTop="32dp">
 
                     <TextView
                         android:id="@+id/most_viewed_text_view"
@@ -144,7 +139,6 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="32dp"
-                        android:background="#272727"
                         android:foregroundTint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
