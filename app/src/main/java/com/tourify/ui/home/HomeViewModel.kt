@@ -18,6 +18,9 @@ class HomeViewModel @Inject constructor(
     private val _userInfoResponse = MutableLiveData<ApiResponse<UserInfoResponse>>()
     val userInfoResponse = _userInfoResponse
 
+    private val _featuredDestinationResponse = MutableLiveData<ApiResponse<DestinationResult>>()
+    val featuredDestinationResponse = _featuredDestinationResponse
+
     private val _trendingDestinationsResponse = MutableLiveData<ApiResponse<List<DestinationResult>>>()
     val trendingDestinationsResponse = _trendingDestinationsResponse
 
@@ -32,6 +35,13 @@ class HomeViewModel @Inject constructor(
         coroutinesErrorHandler,
     ) {
         mainRepository.getUserInfo()
+    }
+
+    fun getFeaturedDestinations(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _featuredDestinationResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.getFeaturedDestination()
     }
 
     fun getTrendingDestinations(coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(

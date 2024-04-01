@@ -11,6 +11,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
+    @GET("home/featured")
+    suspend fun getFeaturedDestinations(): Response<DestinationResult>
+
     @GET("home/trending")
     suspend fun getTrendingDestinations(): Response<List<DestinationResult>>
 

@@ -11,6 +11,10 @@ class MainRepository @Inject constructor(
         mainApiService.getUserInfo()
     }
 
+    fun getFeaturedDestination() = apiRequestFlow {
+        mainApiService.getFeaturedDestinations()
+    }
+
     fun getTrendingDestinations() = apiRequestFlow {
         mainApiService.getTrendingDestinations()
     }
