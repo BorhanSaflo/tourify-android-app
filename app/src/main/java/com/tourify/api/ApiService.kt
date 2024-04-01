@@ -11,13 +11,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("destinations/trending")
+    @GET("home/trending")
     suspend fun getTrendingDestinations(): Response<List<DestinationResult>>
 
-    @GET("destinations/most-viewed")
+    @GET("home/most-viewed")
     suspend fun getMostViewedDestinations(): Response<List<DestinationResult>>
 
-    @GET("destinations/most-liked")
+    @GET("home/most-liked")
     suspend fun getMostLikedDestinations(): Response<List<DestinationResult>>
 
     @GET("destination/{id}")
