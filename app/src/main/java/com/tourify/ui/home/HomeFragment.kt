@@ -120,7 +120,7 @@ class HomeFragment : Fragment() {
         val loadingIcon = placeLayout.findViewById<ProgressBar
         >(R.id.progress_bar_destination)
 
-        textView.text = destination.name
+        textView.text = destination.name + ", " + destination.country
         loadingIcon.visibility = View.VISIBLE
         imageView.visibility = View.GONE
 
