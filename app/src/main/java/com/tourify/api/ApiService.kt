@@ -35,6 +35,6 @@ interface ApiService {
     @GET("user/saved")
     suspend fun getSavedDestinations(): Response<List<DestinationResult>>
 
-    @POST("save/{id}")
+    @POST("destination/{id}/save")
     suspend fun saveDestination(@Path("id") id: Int): Response<Unit>
 }

@@ -2,12 +2,12 @@ package com.tourify.ui.destination
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
@@ -73,7 +73,7 @@ class DestinationFragment : Fragment() {
                         val images = mutableListOf<Bitmap>()
                         val imageFetchListener = ImageFetcher.ImageFetchListener { bitmap ->
                             if (bitmap == null) {
-                                Toast.makeText(requireContext(), "Failed to load images", Toast.LENGTH_SHORT).show()
+                                Log.e("DestinationFragment", "Failed to fetch image")
                                 return@ImageFetchListener
                             }
                             images.add(bitmap)
@@ -101,7 +101,7 @@ class DestinationFragment : Fragment() {
 
         viewModel.getDestination(id, object: CoroutinesErrorHandler {
             override fun onError(message: String) {
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                Log.e("DestinationFragment", message)
             }
         })
 
@@ -151,7 +151,7 @@ class DestinationFragment : Fragment() {
 
         viewModel.getSavedDestinations(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                Log.e("DestinationFragment", message)
             }
         })
 
@@ -161,7 +161,7 @@ class DestinationFragment : Fragment() {
 
             viewModel.saveDestination(id, object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    Log.e("DestinationFragment", message)
                 }
             })
         }
