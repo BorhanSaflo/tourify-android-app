@@ -41,23 +41,23 @@
             android:id="@+id/text_view_destination_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/card_view_destination"
             android:layout_alignParentTop="true"
             android:layout_marginStart="12dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_toEndOf="@id/card_view_destination"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/purple_200"
-            tools:text="City"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            tools:text="City" />
 
         <TextView
             android:id="@+id/text_view_destination_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/text_view_destination_name"
             android:layout_alignBottom="@id/text_view_destination_name"
-            android:layout_marginStart="2dp"
-            android:textColor="@color/purple_200"
+            android:layout_marginStart="6dp"
+            android:layout_toEndOf="@id/text_view_destination_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/white"
             tools:text="Country" />
 
         <TextView

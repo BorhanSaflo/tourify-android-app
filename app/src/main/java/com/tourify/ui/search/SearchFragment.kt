@@ -62,10 +62,7 @@ class SearchFragment : Fragment() {
 
                 // Setting the text views with destination data
                 cityView.text = destination.name
-                countryView.text = buildString {
-                    append(", ")
-                    append(destination.country)
-                }
+                countryView.text = destination.country
                 descriptionView.text = destination.description
                 loadingIcon.visibility = View.VISIBLE
                 imageView.visibility = View.GONE

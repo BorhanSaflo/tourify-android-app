@@ -50,7 +50,8 @@ class DestinationFragment : Fragment() {
 
         val id = requireArguments().getInt("id")
         val destinationDescription: TextView = view.findViewById(R.id.destination_description_text_view)
-        val destinationLocation = view.findViewById<TextView>(R.id.destination_location_text_view)
+        val destinationCity = view.findViewById<TextView>(R.id.destination_city_text_view)
+        val destinationCountry = view.findViewById<TextView>(R.id.destination_country_text_view)
         val likeView = view.findViewById<TextView>(R.id.like_text_view)
         val dislikeView = view.findViewById<TextView>(R.id.dislike_text_view)
         val viewsView = view.findViewById<TextView>(R.id.view_text_view)
@@ -60,7 +61,8 @@ class DestinationFragment : Fragment() {
             when(it) {
                 is ApiResponse.Success -> {
                     val destination = it.data
-                    destinationLocation.text = destination.name + ", " + destination.country
+                    destinationCity.text = destination.name
+                    destinationCountry.text = destination.country
                     destinationDescription.text = destination.description
                     likeView.text = destination.likes.toString()
                     dislikeView.text = destination.dislikes.toString()
