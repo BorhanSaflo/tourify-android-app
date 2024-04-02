@@ -26,6 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class DestinationFragment : Fragment() {
     private val viewModel: DestinationViewModel by viewModels()
 
+    private var rating: Int = 0
+    private var isSaved: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,6 +59,8 @@ class DestinationFragment : Fragment() {
         val dislikeView = view.findViewById<TextView>(R.id.dislike_text_view)
         val viewsView = view.findViewById<TextView>(R.id.view_text_view)
         val savedView = view.findViewById<ImageView>(R.id.save_button)
+        val likedView = view.findViewById<ImageView>(R.id.like_image_view)
+        val dislikedView = view.findViewById<ImageView>(R.id.dislike_image_view)
 
         viewModel.destinationResponse.observe(viewLifecycleOwner) {
             when(it) {
@@ -67,6 +72,16 @@ class DestinationFragment : Fragment() {
                     likeView.text = destination.likes.toString()
                     dislikeView.text = destination.dislikes.toString()
                     viewsView.text = destination.views.toString()
+
+                    isSaved = destination.isSaved
+                    rating = if (destination.isLiked == true) 1 else if (destination.isDisliked == true) 2 else 0
+
+                    if (isSaved)
+                        savedView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.bookmark_checked, null))
+                    if (rating == 1)
+                        likedView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_up_fill, null))
+                    else if (rating == 2)
+                        dislikedView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.thumbs_down_fill, null))
 
                     fun displayImages(urls: List<String>){
                         val imageProgressBar = view.findViewById<View>(R.id.image_progress_bar)
@@ -107,52 +122,6 @@ class DestinationFragment : Fragment() {
             }
         })
 
-        var currentVote = 0
-        var oldVote = 0
-        val likeButton = view.findViewById<ImageView>(R.id.like_image_view)
-        val dislikeButton = view.findViewById<ImageView>(R.id.dislike_image_view)
-
-        
-
-        likeButton.setOnClickListener {
-            if (currentVote == 1) {
-                currentVote = 0
-                updateLikeRating(currentVote, oldVote)
-            } else {
-                currentVote = 1
-                updateLikeRating(currentVote, oldVote)
-            }
-            oldVote = currentVote
-        }
-
-        dislikeButton.setOnClickListener {
-            if (currentVote == 2) {
-                currentVote = 0
-                updateLikeRating(currentVote, oldVote)
-            } else {
-                currentVote = 2
-                updateLikeRating(currentVote, oldVote)
-            }
-            oldVote = currentVote
-        }
-
-        var isSaved = false
-        viewModel.savedDestinationsResponse.observe(viewLifecycleOwner) {
-            when(it) {
-                is ApiResponse.Success -> {
-                    val savedDestinations = it.data
-                    for (destination in savedDestinations) {
-                        if (destination.id.toInt() == id) {
-                            updateBookmark(true)
-                            isSaved = true
-                            break
-                        }
-                    }
-                }
-                else -> {}
-            }
-        }
-
         viewModel.getSavedDestinations(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
                 Log.e("DestinationFragment", message)
@@ -160,8 +129,7 @@ class DestinationFragment : Fragment() {
         })
 
         savedView.setOnClickListener {
-            isSaved = !isSaved
-            updateBookmark(isSaved)
+            updateBookmark()
 
             viewModel.saveDestination(id, object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
@@ -169,57 +137,74 @@ class DestinationFragment : Fragment() {
                 }
             })
         }
+
+        likedView.setOnClickListener {
+            updateLikeRating(if(rating == 1) 0 else 1)
+        }
+
+        dislikedView.setOnClickListener {
+            updateLikeRating(if(rating == 2) 0 else 2)
+        }
     }
 
-    private fun updateLikeRating(currentVote: Int, oldVote: Int) {
+    private fun updateBookmark() {
+        isSaved = !isSaved
+        val savedView = view?.findViewById<ImageView>(R.id.save_button)
+        val newImage = if (isSaved) R.drawable.bookmark_checked else R.drawable.bookmark_unchecked
+        savedView?.setImageDrawable(ResourcesCompat.getDrawable(resources, newImage, null))
+    }
+
+    private fun updateLikeRating(newVote: Int) {
         val likeImage = view?.findViewById<ImageView>(R.id.like_image_view)
         val likeText = view?.findViewById<TextView>(R.id.like_text_view)
         val dislikeImage = view?.findViewById<ImageView>(R.id.dislike_image_view)
         val dislikeText = view?.findViewById<TextView>(R.id.dislike_text_view)
-        val newLikeImage: Int
-        val newDislikeImage: Int
+        val id = requireArguments().getInt("id")
 
-        if(currentVote == 1) {
-            likeText?.text = (likeText?.text.toString().toInt() + 1).toString()
-            newLikeImage = R.drawable.thumbs_up_green
-            newDislikeImage = R.drawable.thumbs_down
-            if (oldVote == 2)
-                dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
-
-            viewModel.likeDestination(requireArguments().getInt("id"), object: CoroutinesErrorHandler {
-                override fun onError(message: String) {
-                    Log.e("DestinationFragment", message)
+        when (newVote) {
+            1 -> {
+                viewModel.likeDestination(id, errorHandler())
+                if (rating != 1) likeText?.increment()
+                if (rating == 2) dislikeText?.decrement()
+                likeImage?.setImageResource(R.drawable.thumbs_up_fill)
+                dislikeImage?.setImageResource(R.drawable.thumbs_down)
+            }
+            2 -> {
+                viewModel.dislikeDestination(id, errorHandler())
+                if (rating == 1) likeText?.decrement()
+                if (rating != 2) dislikeText?.increment()
+                likeImage?.setImageResource(R.drawable.thumbs_up)
+                dislikeImage?.setImageResource(R.drawable.thumbs_down_fill)
+            }
+            else -> {
+                if (rating == 1) {
+                    viewModel.likeDestination(id, errorHandler())
+                    likeText?.decrement()
                 }
-            })
-        } else if (currentVote == 2){
-            dislikeText?.text = (dislikeText?.text.toString().toInt() + 1).toString()
-            newLikeImage = R.drawable.thumbs_up
-            newDislikeImage = R.drawable.thumbs_down_red
-            if (oldVote == 1)
-                likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
-
-            viewModel.dislikeDestination(requireArguments().getInt("id"), object: CoroutinesErrorHandler {
-                override fun onError(message: String) {
-                    Log.e("DestinationFragment", message)
+                if (rating == 2) {
+                    viewModel.dislikeDestination(id, errorHandler())
+                    dislikeText?.decrement()
                 }
-            })
-        } else {
-            newLikeImage = R.drawable.thumbs_up
-            newDislikeImage = R.drawable.thumbs_down
-            if(oldVote == 1)
-                likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
-            else if(oldVote == 2)
-                dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
+                likeImage?.setImageResource(R.drawable.thumbs_up)
+                dislikeImage?.setImageResource(R.drawable.thumbs_down)
+            }
         }
 
-        likeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, newLikeImage, null))
-        dislikeImage?.setImageDrawable(ResourcesCompat.getDrawable(resources, newDislikeImage, null))
+        rating = newVote
     }
 
-    private fun updateBookmark(isSaved: Boolean) {
-        val savedView = view?.findViewById<ImageView>(R.id.save_button)
-        val newImage = if (isSaved) R.drawable.bookmark_checked else R.drawable.bookmark_unchecked
-        savedView?.setImageDrawable(ResourcesCompat.getDrawable(resources, newImage, null))
+    private fun errorHandler() = object: CoroutinesErrorHandler {
+        override fun onError(message: String) {
+            Log.e("DestinationFragment", message)
+        }
+    }
+
+    private fun TextView.increment() {
+        this.text = (this.text.toString().toInt() + 1).toString()
+    }
+
+    private fun TextView.decrement() {
+        this.text = (this.text.toString().toInt() - 1).toString()
     }
 
     private fun addReview(reviews: List<Review>, layout: ViewGroup) {

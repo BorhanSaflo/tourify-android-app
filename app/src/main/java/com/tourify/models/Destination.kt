@@ -10,7 +10,10 @@ data class Destination(
     val likes: Int,
     val dislikes: Int,
     val views: Int,
-    val reviewsQuery: List<Review>
+    val reviewsQuery: List<Review>,
+    val isSaved: Boolean,
+    val isLiked: Boolean?,
+    val isDisliked: Boolean?
 )
 
 data class Review(

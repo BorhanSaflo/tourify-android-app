@@ -73,7 +73,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/thumbs_up_green" />
+                    app:srcCompat="@drawable/thumbs_up_fill" />
 
                 <TextView
                     android:id="@+id/text_view_thumbs_up"
@@ -94,7 +94,7 @@
                     android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/thumbs_down_red" />
+                    app:srcCompat="@drawable/thumbs_down_fill" />
 
                 <TextView
                     android:id="@+id/text_view_thumbs_down"
