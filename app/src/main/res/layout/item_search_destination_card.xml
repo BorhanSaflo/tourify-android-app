@@ -63,7 +63,7 @@
         <TextView
             android:id="@+id/text_view_destination_description"
             android:layout_width="269dp"
-            android:layout_height="61dp"
+            android:layout_height="59dp"
             android:layout_below="@id/text_view_destination_country"
             android:layout_alignStart="@id/text_view_destination_name"
             android:layout_marginTop="8dp"
