@@ -74,7 +74,7 @@ class DestinationFragment : Fragment() {
                     viewsView.text = destination.views.toString()
 
                     isSaved = destination.isSaved
-                    rating = if (destination.isLiked == true) 1 else if (destination.isDisliked == true) 2 else 0
+                    rating = if (destination.isLiked) 1 else if (destination.isDisliked) 2 else 0
 
                     if (isSaved)
                         savedView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.bookmark_checked, null))
