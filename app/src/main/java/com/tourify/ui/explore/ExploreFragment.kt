@@ -17,10 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ExploreFragment : Fragment() {
-    private val viewModel: ExploreViewModel by viewModels()
     private val currentSelectionsMap = mutableMapOf<String, String>()
     private val selections = mutableListOf<String>()
-    private lateinit var btnShowResults: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,10 +34,6 @@ class ExploreFragment : Fragment() {
         setupQuestionView(view, R.id.questionView3, "What is your budget for a vacation?", listOf("Low", "Medium", "High"))
         setupQuestionView(view, R.id.questionView4, "What kind of transportation do you prefer?", listOf("Car", "Bus", "Train"))
         setupQuestionView(view, R.id.questionView5, "What kind of attractions do you enjoy?", listOf("Museums", "Parks", "Beaches"))
-
-        btnShowResults = view.findViewById<Button>(R.id.btn_show_results)
-        btnShowResults.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_explore_to_navigation_explore_results)        }
     }
 
     private fun setupQuestionView(view: View, questionViewId: Int, question: String, options: List<String>) {
@@ -54,39 +48,16 @@ class ExploreFragment : Fragment() {
             updateSelectionsArray()
 
             if (currentSelectionsMap.size == 5) {
-                //call api with selections
-                exploreDestinations(selections.joinToString())
-                btnShowResults.visibility = View.VISIBLE
+                val bundle = Bundle().apply {
+                    putString("selectedOptions", selections.joinToString())
+                }
+                findNavController().navigate(R.id.action_navigation_explore_to_navigation_explore_results, bundle)
             }
-
-            //Log the current selections as string of all of them with a comma separated string
-            Log.d("ExploreFragment", selections.joinToString())
         }
     }
 
     private fun updateSelectionsArray() {
         selections.clear()
         selections.addAll(currentSelectionsMap.values)
-    }
-
-    private fun exploreDestinations(query: String) {
-        btnShowResults.visibility = View.GONE
-        viewModel.exploreDestinations(query, object: CoroutinesErrorHandler {
-            override fun onError(message: String) {
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        viewModel.exploreDestinationsResponse.observe(viewLifecycleOwner) { apiResponse ->
-            when(apiResponse) {
-                is ApiResponse.Success -> {
-                    Log.d("ExploreFragment", "Search results: ${apiResponse.data}")
-                }
-                is ApiResponse.Failure -> {
-                    Toast.makeText(requireContext(), "Failed to load search results", Toast.LENGTH_SHORT).show()
-                }
-                ApiResponse.Loading -> {}
-            }
-        }
     }
 }

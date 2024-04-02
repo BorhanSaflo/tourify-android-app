@@ -1,25 +1,25 @@
 package com.tourify.ui.explore
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.tourify.models.DestinationResult
+import com.tourify.repository.MainRepository
 import com.tourify.utils.ApiResponse
-import kotlinx.coroutines.launch
+import com.tourify.viewmodels.BaseViewModel
+import com.tourify.viewmodels.CoroutinesErrorHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ExploreResultsViewModel : ViewModel() {
-    private val _exploreResultsResponse = MutableLiveData<ApiResponse<List<String>>>()
-    val exploreResultsResponse: LiveData<ApiResponse<List<String>>> = _exploreResultsResponse
+@HiltViewModel
+class ExploreResultsViewModel @Inject constructor(
+    private val mainRepository: MainRepository,
+): BaseViewModel() {
+    private val _exploreDestinationsResponse = MutableLiveData<ApiResponse<List<DestinationResult>>>()
+    val exploreDestinationsResponse = _exploreDestinationsResponse
 
-    fun exploreDestinations(query: String) {
-        viewModelScope.launch {
-            _exploreResultsResponse.value = ApiResponse.Loading
-            try {
-                val results = listOf<String>() // Fetch results from API
-                _exploreResultsResponse.value = ApiResponse.Success(results)
-            } catch (e: Exception) {
-                _exploreResultsResponse.value = ApiResponse.Failure(e.message ?: "An error occurred", 0)
-            }
-        }
+    fun exploreDestinations(query: String, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _exploreDestinationsResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.exploreDestinations(query)
     }
 }
