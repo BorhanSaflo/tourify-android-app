@@ -43,7 +43,7 @@
                 <LinearLayout
                     android:id="@+id/featured_destination_constraint_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
+                    android:layout_height="280dp"
                     android:layout_marginTop="32dp"
                     android:orientation="vertical">
 

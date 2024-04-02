@@ -3,6 +3,7 @@ package com.tourify.ui.explore
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ExploreResultsFragment : Fragment() {
         private val viewModel: ExploreResultsViewModel by viewModels<ExploreResultsViewModel>()
-        private val selectedOptions = arguments?.getString("selectedOptions") ?: ""
+        private lateinit var selectedOptions: String
 
         override fun onCreateView(
                 inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +35,7 @@ class ExploreResultsFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
                 super.onViewCreated(view, savedInstanceState)
+                selectedOptions = arguments?.getString("selectedOptions") ?: ""
 
                 fun updateExploreResults(results: List<DestinationResult>) {
                         val resultsLayout: ViewGroup = view.findViewById(R.id.explore_results_linear_layout)
@@ -68,6 +70,7 @@ class ExploreResultsFragment : Fragment() {
                         }
                 }
 
+                Log.d("ExploreResultsFragment", "Selected options: $selectedOptions")
                 viewModel.exploreDestinations(selectedOptions, object: CoroutinesErrorHandler {
                         override fun onError(message: String) {
                                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
