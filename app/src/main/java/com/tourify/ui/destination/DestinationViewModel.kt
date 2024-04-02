@@ -75,4 +75,24 @@ class DestinationViewModel @Inject constructor(
     ) {
         mainRepository.saveDestination(id)
     }
+
+    private val _likeDestinationResponse = MutableLiveData<ApiResponse<Unit>>()
+    val likeDestinationResponse = _likeDestinationResponse
+
+    fun likeDestination(id: Int, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _likeDestinationResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.likeDestination(id)
+    }
+
+    private val _dislikeDestinationResponse = MutableLiveData<ApiResponse<Unit>>()
+    val dislikeDestinationResponse = _dislikeDestinationResponse
+
+    fun dislikeDestination(id: Int, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
+        _dislikeDestinationResponse,
+        coroutinesErrorHandler,
+    ) {
+        mainRepository.dislikeDestination(id)
+    }
 }

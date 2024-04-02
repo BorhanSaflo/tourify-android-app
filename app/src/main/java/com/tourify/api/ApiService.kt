@@ -40,4 +40,10 @@ interface ApiService {
 
     @POST("destination/{id}/save")
     suspend fun saveDestination(@Path("id") id: Int): Response<Unit>
+
+    @POST("destination/{id}/like")
+    suspend fun likeDestination(@Path("id") id: Int): Response<Unit>
+
+    @POST("destination/{id}/dislike")
+    suspend fun dislikeDestination(@Path("id") id: Int): Response<Unit>
 }

@@ -112,6 +112,8 @@ class DestinationFragment : Fragment() {
         val likeButton = view.findViewById<ImageView>(R.id.like_image_view)
         val dislikeButton = view.findViewById<ImageView>(R.id.dislike_image_view)
 
+        
+
         likeButton.setOnClickListener {
             if (currentVote == 1) {
                 currentVote = 0
@@ -183,12 +185,24 @@ class DestinationFragment : Fragment() {
             newDislikeImage = R.drawable.thumbs_down
             if (oldVote == 2)
                 dislikeText?.text = (dislikeText?.text.toString().toInt() - 1).toString()
+
+            viewModel.likeDestination(requireArguments().getInt("id"), object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+                    Log.e("DestinationFragment", message)
+                }
+            })
         } else if (currentVote == 2){
             dislikeText?.text = (dislikeText?.text.toString().toInt() + 1).toString()
             newLikeImage = R.drawable.thumbs_up
             newDislikeImage = R.drawable.thumbs_down_red
             if (oldVote == 1)
                 likeText?.text = (likeText?.text.toString().toInt() - 1).toString()
+
+            viewModel.dislikeDestination(requireArguments().getInt("id"), object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+                    Log.e("DestinationFragment", message)
+                }
+            })
         } else {
             newLikeImage = R.drawable.thumbs_up
             newDislikeImage = R.drawable.thumbs_down

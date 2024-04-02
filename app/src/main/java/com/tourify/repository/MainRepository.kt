@@ -46,4 +46,12 @@ class MainRepository @Inject constructor(
     fun saveDestination(id: Int) = apiRequestFlow {
         mainApiService.saveDestination(id)
     }
+
+    fun likeDestination(id: Int) = apiRequestFlow {
+        mainApiService.likeDestination(id)
+    }
+
+    fun dislikeDestination(id: Int) = apiRequestFlow {
+        mainApiService.dislikeDestination(id)
+    }
 }
