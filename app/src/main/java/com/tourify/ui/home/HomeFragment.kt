@@ -41,7 +41,13 @@ class HomeFragment : Fragment() {
                 is ApiResponse.Success -> it.data.userInfo.name
                 else -> "User"
             }
-            textView.text = "Hi, $name!"
+            val time = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+            when (time) {
+                in 0..5 -> textView.text = "Good evening, $name"
+                in 6..11 -> textView.text = "Good morning, $name"
+                in 12..16 -> textView.text = "Good afternoon, $name"
+                else -> textView.text = "Good evening, $name"
+            }
         }
 
         viewModel.getUserInfo(object: CoroutinesErrorHandler {

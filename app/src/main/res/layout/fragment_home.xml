@@ -37,14 +37,14 @@
                     android:layout_marginTop="20dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textColor="@color/purple_200"
-                    android:textSize="34sp"
+                    android:textSize="28sp"
                     tools:text="Hi, " />
 
                 <LinearLayout
                     android:id="@+id/featured_destination_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="280dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                 <TextView
@@ -107,7 +107,7 @@
                     android:id="@+id/most_liked_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/most_liked_text_view"
@@ -145,7 +145,7 @@
                     android:id="@+id/most_viewed_constraint_layout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/most_viewed_text_view"
