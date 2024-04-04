@@ -1,4 +1,4 @@
-package com.tourify.ui.user.savedDestinations
+package com.tourify.ui.user.dislikedDestinations
 
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -21,36 +21,36 @@ import com.tourify.viewmodels.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SavedDestinationsFragment : Fragment() {
-    private val viewModel: SavedDestinationsViewModel by viewModels()
+class DislikedDestinationsFragment : Fragment() {
+    private val viewModel: DislikedDestinationsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_saved_destinations, container, false)
+        return inflater.inflate(R.layout.fragment_disliked_destinations, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadSavedDestinations()
+        loadDislikedDestinations()
 
     }
 
-    private fun loadSavedDestinations() {
-        viewModel.savedDestinationsResponse.observe(viewLifecycleOwner) {
+    private fun loadDislikedDestinations() {
+        viewModel.dislikedDestinationsResponse.observe(viewLifecycleOwner) {
             val destinations = when (it) {
                 is ApiResponse.Success -> it.data
                 else -> null
             }
 
             if (destinations != null) {
-                val layout = view?.findViewById<ViewGroup>(R.id.saved_destinations_grid_layout)
+                val layout = view?.findViewById<ViewGroup>(R.id.disliked_destinations_grid_layout)
                 updateSection(destinations, layout!!)
             }
         }
 
-        viewModel.getSavedDestinations(object: CoroutinesErrorHandler {
+        viewModel.getDislikedDestinations(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
@@ -103,7 +103,7 @@ class SavedDestinationsFragment : Fragment() {
             val fragment = DestinationFragment()
             fragment.arguments = args
 
-            findNavController().navigate(R.id.action_navigation_savedDestinations_to_navigation_destination, args)
+            findNavController().navigate(R.id.action_navigation_dislikedDestinations_to_navigation_destination, args)
         }
     }
 }

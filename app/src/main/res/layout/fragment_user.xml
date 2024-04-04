@@ -36,32 +36,47 @@
                 android:id="@+id/user_saved_destinations_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:text="Saved Destinations"
                 app:layout_constraintEnd_toEndOf="@+id/user_profile_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_profile_button" />
+                app:layout_constraintStart_toStartOf="@+id/user_profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/user_settings_button" />
+
+            <Button
+                android:id="@+id/user_liked_destinations_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="liked destinations"
+                app:layout_constraintEnd_toEndOf="@+id/user_profile_button"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/user_saved_destinations_button" />
+
+            <Button
+                android:id="@+id/user_disliked_destinations_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="disliked destinations"
+                app:layout_constraintEnd_toEndOf="@+id/user_profile_button"
+                app:layout_constraintStart_toStartOf="@+id/user_profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/user_liked_destinations_button" />
 
             <Button
                 android:id="@+id/user_settings_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:text="Settings"
                 app:layout_constraintEnd_toEndOf="@+id/user_saved_destinations_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_saved_destinations_button" />
+                app:layout_constraintStart_toStartOf="@+id/user_profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/user_profile_button" />
 
             <Button
                 android:id="@+id/user_sign_out_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:text="Sign Out"
                 app:layout_constraintEnd_toEndOf="@+id/user_settings_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_settings_button" />
+                app:layout_constraintStart_toStartOf="@+id/user_profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/user_disliked_destinations_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 

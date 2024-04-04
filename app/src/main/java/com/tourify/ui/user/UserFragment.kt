@@ -54,16 +54,28 @@ class UserFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_you_to_navigation_profile)
         }
 
+        // Settings button
+        val settingsButton: Button = binding.userSettingsButton
+        settingsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_you_to_navigation_settings2)
+        }
+
         // Saved destinations button
         val savedDestinationsButton: Button = binding.userSavedDestinationsButton
         savedDestinationsButton.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_you_to_navigation_savedDestinations2)
         }
 
-        // Settings button
-        val settingsButton: Button = binding.userSettingsButton
-        settingsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_you_to_navigation_settings2)
+        // Liked destinations button
+        val likedDestinationsButton: Button = binding.userLikedDestinationsButton
+        likedDestinationsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_you_to_navigation_likedDestinations)
+        }
+
+        // Disliked destinations button
+        val dislikedDestinationsButton: Button = binding.userDislikedDestinationsButton
+        dislikedDestinationsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_you_to_navigation_dislikedDestinations)
         }
 
         return root

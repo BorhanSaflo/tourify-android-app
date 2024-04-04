@@ -38,6 +38,12 @@ interface ApiService {
     @GET("user/saved")
     suspend fun getSavedDestinations(): Response<List<DestinationResult>>
 
+    @GET("user/liked")
+    suspend fun getLikedDestinations(): Response<List<DestinationResult>>
+
+    @GET("user/disliked")
+    suspend fun getDislikedDestinations(): Response<List<DestinationResult>>
+
     @POST("destination/{id}/save")
     suspend fun saveDestination(@Path("id") id: Int): Response<Unit>
 

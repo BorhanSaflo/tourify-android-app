@@ -66,12 +66,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("androidx.gridlayout:gridlayout:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    //UI Components
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
 
     //DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")

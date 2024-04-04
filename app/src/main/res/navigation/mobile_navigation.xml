@@ -59,6 +59,12 @@
         <action
             android:id="@+id/action_navigation_you_to_navigation_settings2"
             app:destination="@id/navigation_settings" />
+        <action
+            android:id="@+id/action_navigation_you_to_navigation_likedDestinations"
+            app:destination="@id/navigation_likedDestinations" />
+        <action
+            android:id="@+id/action_navigation_you_to_navigation_dislikedDestinations"
+            app:destination="@id/navigation_dislikedDestinations" />
     </fragment>
 
     <fragment
@@ -93,7 +99,32 @@
         android:id="@+id/navigation_savedDestinations"
         android:name="com.tourify.ui.user.savedDestinations.SavedDestinationsFragment"
         android:label="Saved Destinations"
-        tools:layout="@layout/fragment_saved_destinations" />
+        tools:layout="@layout/fragment_saved_destinations" >
+        <action
+            android:id="@+id/action_navigation_savedDestinations_to_navigation_destination"
+            app:destination="@id/navigation_destination" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_likedDestinations"
+        android:name="com.tourify.ui.user.likedDestinations.LikedDestinationsFragment"
+        android:label="Liked Destinations"
+        tools:layout="@layout/fragment_liked_destinations" >
+        <action
+            android:id="@+id/action_navigation_likedDestinations_to_navigation_destination"
+            app:destination="@id/navigation_destination" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dislikedDestinations"
+        android:name="com.tourify.ui.user.dislikedDestinations.DislikedDestinationsFragment"
+        android:label="Disliked Destinations"
+        tools:layout="@layout/fragment_disliked_destinations" >
+        <action
+            android:id="@+id/action_navigation_dislikedDestinations_to_navigation_destination"
+            app:destination="@id/navigation_destination" />
+    </fragment>
+
     <fragment
         android:id="@+id/languageFragment"
         android:name="com.tourify.ui.user.settings.langauge.LanguageFragment"
