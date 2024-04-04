@@ -24,24 +24,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/greeting_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:text="Explore Results"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@color/purple_200"
-                android:textSize="34sp" />
-
             <LinearLayout
                 android:id="@+id/explore_results_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp"
-                />
+                android:layout_marginTop="16dp"
+                android:orientation="vertical" />
 
         </LinearLayout>
     </ScrollView>

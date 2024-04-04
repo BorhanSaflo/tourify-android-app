@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = binding.toolbar2
         val toolbarController = findNavController(R.id.nav_host_fragment_activity_main)
         toolbar.setupWithNavController(toolbarController)
-        //toolbar.setLogo(R.drawable.tourify_black_text_logo)
-
+        //toolbar.setLogo(R.drawable.tourify_black_logo_short) // Displays logo, removes titles.
 
     }
 }

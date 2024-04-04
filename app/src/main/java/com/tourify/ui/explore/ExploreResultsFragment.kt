@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.tourify.ImageFetcher
 import com.tourify.R
 import com.tourify.models.DestinationResult
@@ -109,10 +110,7 @@ class ExploreResultsFragment : Fragment() {
                         val fragment = DestinationFragment().apply {
                                 arguments = args
                         }
-                        requireActivity().supportFragmentManager.beginTransaction()
-                                .replace(R.id.explore_results_layout, fragment)
-                                .addToBackStack(null)
-                                .commit()
+                        findNavController().navigate(R.id.action_navigation_explore_results_to_navigation_destination, args)
 
                         hideKeyboard()
                 }

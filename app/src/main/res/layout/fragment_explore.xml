@@ -24,17 +24,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/greeting_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:text="Explore"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@color/purple_200"
-                android:textSize="34sp" />
-
             <!-- Include Custom Question Views Here -->
             <com.tourify.ui.explore.QuestionView
                 android:id="@+id/questionView1"

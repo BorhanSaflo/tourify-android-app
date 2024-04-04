@@ -19,7 +19,11 @@
         android:id="@+id/navigation_search"
         android:name="com.tourify.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_navigation_destination"
+            app:destination="@id/navigation_destination" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_explore"
@@ -35,7 +39,11 @@
         android:id="@+id/navigation_explore_results"
         android:name="com.tourify.ui.explore.ExploreResultsFragment"
         android:label="Explore Results"
-        tools:layout="@layout/fragment_explore_results" />
+        tools:layout="@layout/fragment_explore_results" >
+        <action
+            android:id="@+id/action_navigation_explore_results_to_navigation_destination"
+            app:destination="@id/navigation_destination" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_you"
@@ -89,15 +97,18 @@
     <fragment
         android:id="@+id/languageFragment"
         android:name="com.tourify.ui.user.settings.langauge.LanguageFragment"
-        android:label="LanguageFragment" />
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language" />
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.tourify.ui.user.settings.notifications.NotificationsFragment"
-        android:label="NotificationsFragment" />
+        android:label="NotificationsFragment"
+        tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/themeFragment"
         android:name="com.tourify.ui.user.settings.theme.ThemeFragment"
-        android:label="ThemeFragment" />
+        android:label="ThemeFragment"
+        tools:layout="@layout/fragment_theme" />
 
 
 </navigation>

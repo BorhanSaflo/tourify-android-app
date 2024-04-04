@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.tourify.ImageFetcher
 import com.tourify.R
 import com.tourify.models.DestinationResult
@@ -149,10 +150,7 @@ class SearchFragment : Fragment() {
             val fragment = DestinationFragment().apply {
                 arguments = args
             }
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.search_frame_layout, fragment)
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_navigation_search_to_navigation_destination, args)
 
             hideKeyboard()
         }
