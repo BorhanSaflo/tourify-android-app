@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.tourify.R
 import com.tourify.databinding.FragmentSettingsBinding
 import com.tourify.ui.user.settings.langauge.LanguageFragment
@@ -35,19 +36,19 @@ class SettingsFragment : Fragment() {
         // Theme button
         val themeButton: Button = binding.settingsThemeButton
         themeButton.setOnClickListener {
-            changeFragment(ThemeFragment())
+            findNavController().navigate(R.id.action_navigation_settings_to_themeFragment)
         }
 
         // Notification button
         val notificationButton: Button = binding.settingsNotificationsButton
         notificationButton.setOnClickListener {
-            changeFragment(NotificationsFragment())
+            findNavController().navigate(R.id.action_navigation_settings_to_notificationsFragment)
         }
 
         // Language button
         val languageButton: Button = binding.settingsLanguageButton
         languageButton.setOnClickListener {
-            changeFragment(LanguageFragment())
+            findNavController().navigate(R.id.action_navigation_settings_to_languageFragment)
         }
 
         return root

@@ -1,6 +1,7 @@
 package com.tourify
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -20,8 +21,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+
+        val toolbar: Toolbar = binding.toolbar2
+        val toolbarController = findNavController(R.id.nav_host_fragment_activity_main)
+        toolbar.setupWithNavController(toolbarController)
+        //toolbar.setLogo(R.drawable.tourify_black_text_logo)
+
+
     }
 }

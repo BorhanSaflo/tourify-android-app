@@ -34,15 +34,10 @@ class DestinationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_destination, container, false)
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
 
         (activity as? AppCompatActivity)?.let { activity ->
             activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
             activity.supportActionBar?.setDisplayShowHomeEnabled(true)
-
-            toolbar.setNavigationOnClickListener {
-                activity.onBackPressed()
-            }
         }
 
         return view

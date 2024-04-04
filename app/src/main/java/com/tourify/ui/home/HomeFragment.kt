@@ -14,6 +14,7 @@ import com.tourify.ui.destination.DestinationFragment
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.tourify.ImageFetcher
 import com.tourify.models.DestinationResult
 import com.tourify.utils.ApiResponse
@@ -178,10 +179,7 @@ class HomeFragment : Fragment() {
             val fragment = DestinationFragment()
             fragment.arguments = args
 
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.home_frame_layout, fragment)
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_destination, args)
         }
     }
 }

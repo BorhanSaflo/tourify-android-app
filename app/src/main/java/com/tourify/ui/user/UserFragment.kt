@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.tourify.LoginActivity
 import com.tourify.R
 import com.tourify.databinding.FragmentUserBinding
@@ -50,19 +51,19 @@ class UserFragment : Fragment() {
         // Profile button
         val profileButton: Button = binding.userProfileButton
         profileButton.setOnClickListener {
-            changeFragment(ProfileFragment())
+            findNavController().navigate(R.id.action_navigation_you_to_navigation_profile)
         }
 
         // Saved destinations button
         val savedDestinationsButton: Button = binding.userSavedDestinationsButton
         savedDestinationsButton.setOnClickListener {
-            changeFragment(SavedDestinationsFragment())
+            findNavController().navigate(R.id.action_navigation_you_to_navigation_savedDestinations2)
         }
 
         // Settings button
         val settingsButton: Button = binding.userSettingsButton
         settingsButton.setOnClickListener {
-            changeFragment(SettingsFragment())
+            findNavController().navigate(R.id.action_navigation_you_to_navigation_settings2)
         }
 
         return root
@@ -93,12 +94,5 @@ class UserFragment : Fragment() {
         }
 
         builder.create().show()
-    }
-
-    private fun changeFragment(newFragment: Fragment) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.user_frame_layout, newFragment)
-            .addToBackStack(null)
-            .commit()
     }
 }
